@@ -50,12 +50,17 @@ export const fetchCurrentUser = () => {
     })
       .then(response => response.json())
       .then((JSONResponse) => dispatch(setCurrentUser(JSONResponse.user)))
+
   }
 }
 
 export const setCurrentUser = (userData) => ({
   type: 'SET_CURRENT_USER',
   payload: userData
+})
+
+export const logoutUser = () => ({
+  type: 'LOGOUT_USER'
 })
 
 export const failedLogin = (errorMsg) => ({
