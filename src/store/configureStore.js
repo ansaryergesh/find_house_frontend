@@ -12,7 +12,6 @@ export const ConfigureStore = () => {
         }),
         composeWithDevTools((applyMiddleware(thunk, logger)))
     );
-
     
     return store;
 }

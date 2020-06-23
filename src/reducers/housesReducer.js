@@ -6,7 +6,7 @@ const housesReducer = (state={
     switch(action.type) {
         case 'POST_HOUSE_SUCCESS':
             return {
-                ...state,isLoading: false, errMess: null, houses: action.payloead,
+                ...state,isLoading: false, errMess: null, houses: action.payload,
             };
         case 'HOUSES_LOADING':
             return {
@@ -16,6 +16,8 @@ const housesReducer = (state={
             return {
                 ...state, isLoading: false, errMess: action.payloead, houses: [],
             }
+        default:
+            return state
     }
 }
 

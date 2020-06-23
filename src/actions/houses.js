@@ -1,5 +1,3 @@
-import addHouse from "../components/addHouse";
-
 export const houseLoading = () => ({
   type: 'HOUSES_LOADING',
 })
@@ -46,19 +44,13 @@ export const postHouse = (name,description,price)=> {
         })
         .then(response=>response.json())
         .then(response=>dispatch(postHouseSuccess(response)))
-          .catch(r => r.json().then(e => dispatch({ type: 'HOUSES_POST_FAILED', payload: e.message })))
+        .catch(response=> response.json().then(e => dispatch({ type: 'HOUSES_POST_FAILED', payload: e.message })))
     }
 }
 
 export const fetchHouses = () => dispatch => {
     dispatch(houseLoading(true));
-    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-        }
-    })
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`)
     .then(response=> {
         if(response.ok) {
             return response;
@@ -73,6 +65,6 @@ export const fetchHouses = () => dispatch => {
         throw errmess;
     })
     .then(response => response.json())
-    .then(homes =>dispatch(addHouse(homes)))
+    .then(homes =>dispatch(postHouseSuccess(homes)))
     .catch(error=> dispatch(housesFailed(error.message)));
 }

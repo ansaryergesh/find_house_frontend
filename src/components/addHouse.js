@@ -17,7 +17,8 @@ class AddHouse extends Component {
     }
 
     handleSubmit = () => { //semantic forms preventDefault for you
-        this.props.postHouse(this.state.name, this.state.description, this.state.price)
+        // this.props.postHouse(this.state.name, this.state.description, this.state.price)
+        console.log(this.state.name, this.state.description, this.state.price)
         this.setState({ name: '', description: '', price: '' }) //reset form to initial state
     }
     
