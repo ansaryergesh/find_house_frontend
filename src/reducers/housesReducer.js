@@ -1,10 +1,8 @@
-const defaultState = {
+const housesReducer = (state={
     isLoading: false,
     errMess: null,
-    houses: [],
-}
-
-const housesReducer = (state=defaultState,action) => {
+    houses: []
+},action) => {
     switch(action.type) {
         case 'POST_HOUSE_SUCCESS':
             return {

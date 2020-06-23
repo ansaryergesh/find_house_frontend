@@ -15,6 +15,7 @@ const Nav = ({ user: { loggedIn }, location: { pathname }}) => {
         <Fragment>
           <Menu.Item as={NavLink} to="/profile" name="Profile" active={pathname === '/profile'} />
           <Menu.Item as={NavLink} to="/home"  name="Home" active={pathname === '/home'} />
+          <Menu.Item as={NavLink} to='/addHouse' name='Post House' active={pathname === 'addHouse'} />
           <Menu.Menu position="right">
             {/* TODO: logout */}
             <Menu.Item as= {NavLink} to="/login"  onClick={handleClick} name="Logout"/>
