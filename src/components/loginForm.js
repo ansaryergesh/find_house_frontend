@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import { withRouter, Redirect } from 'react-router'
 import { loginUser } from '../actions/user'
-import { Button, Form, Segment, Message } from 'semantic-ui-react'
-
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 class LoginForm extends React.Component {
   state = { username: '', password: '' }
 
@@ -23,35 +22,46 @@ class LoginForm extends React.Component {
     return this.props.loggedIn ? (
       <Redirect to="/profile" />
     ) : (
-      <Segment>
-        <Form
+      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450 }}>
+      <Header as='h2' color='teal' textAlign='center'>
+        <Image src='https://upload.wikimedia.org/wikipedia/commons/6/60/Firefox_Home_-_logo.png' /> Login Page
+      </Header>
+      <Form size='large'
           onSubmit={this.handleLoginSubmit}
           size="mini"
           key="mini"
           loading={this.props.authenticatingUser}
           error={this.props.failedLogin}
         >
+      <Segment stacked>
+      
           <Message error header={this.props.failedLogin ? this.props.error : null} />
-          <Form.Group widths="equal">
-            <Form.Input
-              label="username"
+         
+            <Form.Input fluid
+              icon='user'
+              iconPosition='left'
               placeholder="username"
               name="username"
               onChange={this.handleChange}
               value={this.state.username}
             />
             <Form.Input
+              icon='lock'
+              iconPosition='left'
               type="password"
-              label="password"
               placeholder="password"
               name="password"
               onChange={this.handleChange}
               value={this.state.password}
             />
-          </Form.Group>
-          <Button type="submit">Login</Button>
-        </Form>
+     
+          <Button color='teal' fluid size='large' type="submit">Login</Button>
+       
       </Segment>
+      </Form>
+      </Grid.Column>
+  </Grid>
     )
   }
 }

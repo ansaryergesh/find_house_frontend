@@ -33,7 +33,7 @@ const Home = props => {
       </div>
       <div className="row">
           
-        {props.houses.map(house => (
+        {props.houses.houses.map(house => (
           <div key={house.id} className="col-12 col-md-5 m-1">
             <Card>
               {/* <Link to={`/menu/${meal.idMeal}`}> */}

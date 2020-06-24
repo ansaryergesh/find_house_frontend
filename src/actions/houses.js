@@ -16,7 +16,7 @@ export const housesPostFailed = errmess => ({
 })
 
 
-export const postHouse = (name,description,price)=> {
+export const postHouse = (name,descripton,price)=> {
     return /*FUNCTION*/ (dispatch) => {
         dispatch({ type: 'HOUSE_POST_LOADING' })
         fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`, {
@@ -25,14 +25,11 @@ export const postHouse = (name,description,price)=> {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
-                
             },
             body: JSON.stringify({
-                houses: {
                     name: name,
-                    description: description,
+                    descripton: descripton,
                     price: price
-            }
             })
         })
         .then(response => {
@@ -44,7 +41,7 @@ export const postHouse = (name,description,price)=> {
         })
         .then(response=>response.json())
         .then(response=>dispatch(postHouseSuccess(response)))
-        .catch(response=> response.json().then(e => dispatch({ type: 'HOUSES_POST_FAILED', payload: e.message })))
+        .catch(response=> response.json().then(e => dispatch(housesPostFailed(e.message))))
     }
 }
 

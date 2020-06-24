@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import withAuth from '../hocs/withAuth';
+import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { Button, Form, Segment, Message } from 'semantic-ui-react'
+// import {Form,Input} from 'semantic-ui-react-form-validator'
 import { postHouse } from '../actions/houses'
+
+const required = (val) => val && val.length;
 
 const mapStateToProps = () => ({
   
@@ -11,18 +15,23 @@ const mapStateToProps = () => ({
 const mapDispacthToProps = dispatch => ({
 });
 class AddHouse extends Component {
-    state = { name: '', description: '', price: '',}
+    state = { name: '', descripton: '', price: '', redirectTo: false}
     handleChange = (e, semanticInputData) => {
+        e.preventDefault();
         this.setState({ [semanticInputData.name]: semanticInputData.value })
     }
 
-    handleSubmit = () => { //semantic forms preventDefault for you
-        // this.props.postHouse(this.state.name, this.state.description, this.state.price)
-        console.log(this.state.name, this.state.description, this.state.price)
-        this.setState({ name: '', description: '', price: '' }) //reset form to initial state
+    handleSubmit = (e) => {
+        e.preventDefault()//semantic forms preventDefault for you
+        this.props.postHouse(this.state.name, this.state.descripton, this.state.price)
+        // console.log(this.state.name, this.state.descripton, this.state.price)
+        this.setState({ name: '', descripton: '', price: '', redirectTo: true }) //reset form to initial state
     }
     
     render() {
+        // if (this.state.redirectTo === true) {
+        //     return <Redirect to="/home" />
+        // }
         return (
             <div>
                 <h1>Add House</h1>
@@ -33,7 +42,7 @@ class AddHouse extends Component {
                     size="mini"
                     key="mini"
                     >
-                    {/* <Message error header={this.props.failedLogin ? this.props.error : null} /> */}
+                    <Message error header={this.props.housesPostFailed ? this.props.error : null} />
                     <Form.Group widths="equal">
                         <Form.Input
                         label="name"
@@ -41,14 +50,16 @@ class AddHouse extends Component {
                         name="name"
                         onChange={this.handleChange}
                         value={this.state.name}
+                        validators={['required']} 
+                        errorMessages={['this field is required']} 
                         />
                         <Form.Input
                         type="text"
-                        label="description"
-                        placeholder="description"
-                        name="description"
+                        label="descripton"
+                        placeholder="descripton"
+                        name="descripton"
                         onChange={this.handleChange}
-                        value={this.state.description}
+                        value={this.state.descripton}
                         />
                          <Form.Input
                         type='number'
