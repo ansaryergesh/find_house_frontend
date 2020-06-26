@@ -47,7 +47,13 @@ export const postHouse = (name,descripton,price)=> {
 
 export const fetchHouses = () => dispatch => {
     dispatch(houseLoading(true));
-    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`)
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`,{
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+    })
     .then(response=> {
         if(response.ok) {
             return response;

@@ -23,10 +23,13 @@ class LoginForm extends React.Component {
       <Redirect to="/profile" />
     ) : (
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as='h2' color='teal' textAlign='center'>
-        <Image src='https://upload.wikimedia.org/wikipedia/commons/6/60/Firefox_Home_-_logo.png' /> Login Page
+    <Grid.Column style={{ maxWidth: 500 }}>
+    <p>username: user; password:password</p>
+      <p>username: ansar; password:password</p>
+      <Header as='h2' color='orange' textAlign='center'>
+          Sign In
       </Header>
+      <p style={{letterSpacing: '.95px'}}> Hello There. <br></br>Sign In and start managing your system</p>
       <Form size='large'
           onSubmit={this.handleLoginSubmit}
           size="mini"
@@ -56,7 +59,7 @@ class LoginForm extends React.Component {
               value={this.state.password}
             />
      
-          <Button color='teal' fluid size='large' type="submit">Login</Button>
+          <Button color='orange' fluid size='large' type="submit">Login</Button>
        
       </Segment>
       </Form>

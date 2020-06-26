@@ -29,9 +29,6 @@ class AddHouse extends Component {
     }
     
     render() {
-        // if (this.state.redirectTo === true) {
-        //     return <Redirect to="/home" />
-        // }
         return (
             <div>
                 <h1>Add House</h1>
@@ -45,6 +42,8 @@ class AddHouse extends Component {
                     <Message error header={this.props.housesPostFailed ? this.props.error : null} />
                     <Form.Group widths="equal">
                         <Form.Input
+                        icon='building outline'
+                        iconPosition='left'
                         label="name"
                         placeholder="name"
                         name="name"
@@ -54,6 +53,8 @@ class AddHouse extends Component {
                         errorMessages={['this field is required']} 
                         />
                         <Form.Input
+                        icon= 'clipboard'
+                        iconPosition='left'
                         type="text"
                         label="descripton"
                         placeholder="descripton"
@@ -62,6 +63,8 @@ class AddHouse extends Component {
                         value={this.state.descripton}
                         />
                          <Form.Input
+                         icon='dollar sign'
+                        iconPosition='left'
                         type='number'
                         label="price"
                         placeholder="price"

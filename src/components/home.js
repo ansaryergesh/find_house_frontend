@@ -1,8 +1,8 @@
-import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Card, Icon, Image,Header, Grid, Segment,Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { Loading} from './Loader';
-
+import AddFavourite from './favourAdd';
 const Home = props => {
   if (props.houses.isLoading) {
     return (
@@ -23,33 +23,40 @@ const Home = props => {
     );
   }
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12">
-        <h3>Homes</h3>
-          <hr />
-
-        </div>
-      </div>
-      <div className="row">
-          
+    <div>
+      <h2 style={{textAlign: 'center'}}>List of Houses</h2>
+    <div className='ui four column stackable grid'>
+    
+    
         {props.houses.houses.map(house => (
-          <div key={house.id} className="col-12 col-md-5 m-1">
-            <Card>
-              {/* <Link to={`/menu/${meal.idMeal}`}> */}
-                {/* <CardImg width="100%" src={meal.strMealThumb} alt={meal.strMeal} /> */}
-                {/* <CardImgOverlay> */}
-                  <Card.Header className="houseName">{house.name}</Card.Header>
+  
+              <Grid.Column>
+                {/* <Segment> */}
+                <div key={house.id}>
+                  <Card className='ui fluid card'>
+                    <Link to={`/home/${house.id}`}>
+                      <Image width="100%" src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnaLeVAeQkPPz720Kq9WxuAVqqHTCihrX8SQ&usqp=CAU' />
+                      </Link>
+                      <Card.Content>
+                      <Card.Header className="houseName">{house.name}</Card.Header>
+                      <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
+                      <Card.Description>{house.price}</Card.Description>
+                      <AddFavourite />
+                      </Card.Content>
+                 
 
-                {/* </CardImgOverlay> */}
-                <Card.Description className="category">{house.price}</Card.Description>
-              {/* </Link> */}
-            </Card>
+                  </Card>
           </div>
+                {/* </Segment> */}
+              </Grid.Column>
+         
+         
         ))}
       </div>
-    </div>
+      </div>
+  
   );
 };
 
 export default Home;
+
