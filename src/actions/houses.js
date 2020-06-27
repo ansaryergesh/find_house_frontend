@@ -34,7 +34,7 @@ export const postHouse = (name,descripton,price)=> {
         })
         .then(response => {
             if (response.ok) {
-              return response.json()
+              return response
             } else {
               throw response
             }

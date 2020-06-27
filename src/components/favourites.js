@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { Card, Icon, Image,Header, Grid, Segment,Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { Loading} from './Loader';
+import withAuth from '../hocs/withAuth';
 // import AddFavourite from './favourAdd';
 import {postFavourite} from '../actions/favourite';
 
-const Home = props => {
-  const handleClick = (e, homeId) => {
-    e.preventDefault();
-    props.postFavourite(homeId);
-  };
-  if (props.houses.isLoading) {
+const Favourites = props => {
+
+  if (props.favourites.isLoading) {
     return (
       <div className="container">
         <div className="row">
@@ -19,20 +17,23 @@ const Home = props => {
       </div>
     );
   }
-  if (props.houses.errMess) {
+  if (props.favourites.errMess) {
     return (
       <div className="container">
         <div className="row">
-          <h4>{props.houses.errMess}</h4>
+          <h4>{props.favourites.errMess}</h4>
         </div>
       </div>
     );
   }
   return (
     <div>
-      <h2 style={{textAlign: 'center'}}>List of Houses</h2>
+      <h2 style={{textAlign: 'center'}}>List of Favourites</h2>
     <div className='ui four column stackable grid'>
-        {props.houses.houses.map(house => (
+    
+    
+        {props.favourites.favourites.map(house => (
+  
               <Grid.Column>
                 {/* <Segment> */}
                 <div key={house.id}>
@@ -44,9 +45,9 @@ const Home = props => {
                       <Card.Header className="houseName">{house.name}</Card.Header>
                       <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
                       <Card.Description>{house.price}</Card.Description>
-                      <Button onClick={e=> handleClick(e, house.id)} icon>
+                      {/* <Button onClick={e=> handleClick(e, house.id)} icon>
                         <Icon name='heart'/>
-                      </Button>
+                      </Button> */}
                       </Card.Content>
                  
 
@@ -63,5 +64,5 @@ const Home = props => {
   );
 };
 
-export default Home;
+export default withAuth(Favourites);
 

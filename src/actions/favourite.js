@@ -7,8 +7,10 @@ export const favouriteFailed = errmess => ({
     payload: errmess,
 })
 
-
-export const  postFavourite = () => {
+export const favouriteLoading = () => ({
+    type: 'FAVOURITE_LOADING'
+})
+export const  postFavourite = (homeId) => {
     return /*FUNCTION*/ (dispatch) => {
         fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/favourites`, {
             method: 'POST',
@@ -17,16 +19,48 @@ export const  postFavourite = () => {
                 Accept: 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
             },
+            body: JSON.stringify({
+                home_id: homeId,
+        })
         })
         .then(response => {
             if (response.ok) {
-              return response.json()
+              return response
             } else {
               throw response
             }
         })
         .then(response=>response.json())
         .then(response=>dispatch(addFavourite(response)))
-        .catch(response=> response.json().then(e => dispatch(favouriteFailed(e.message))))
+        .catch(error => {
+            alert('Error:\n' + error.message)
+        })
     }
+}
+
+export const fetchFavourites = () => dispatch => {
+    dispatch(favouriteLoading(true));
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/favourites`,{
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+    })
+    .then(response=> {
+        if(response.ok) {
+            return response;
+        }
+
+        const error = new Error(`Error ${response.status}: ${response.statusText}`);
+        error.response =response;
+        throw error;
+    },
+    error=> {
+        const errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(favourites =>dispatch(addFavourite(favourites)))
+    .catch(error=> dispatch(favouriteFailed(error.message)));
 }
