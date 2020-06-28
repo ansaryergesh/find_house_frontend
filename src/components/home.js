@@ -11,6 +11,11 @@ const Home = props => {
     e.preventDefault();
     props.postFavourite(homeId);
   };
+
+  const handleRemove = (e, homeId) => {
+    e.preventDefault();
+    props.deleteFavourite(homeId);
+  }
   if (props.houses.isLoading) {
     return (
       <div className="container">
@@ -49,6 +54,10 @@ const Home = props => {
 
                       <Button  onClick={e=> handleClick(e, house.id)} icon>
                         <Icon color='black' name='heart'/>
+                      </Button>
+
+                      <Button  onClick={e=> handleRemove(e, house.id)} icon>
+                        <Icon color='red' name='heart'/>
                       </Button>
                       </Card.Content>
                  

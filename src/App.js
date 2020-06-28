@@ -8,7 +8,7 @@ import AddHouse from './components/addHouse'
 import Favourites from './components/favourites'
 import HomeDetail from './components/homeeDetail'
 import {postHouse, fetchHouses} from './actions/houses';
-import {postFavourite, fetchFavourites} from './actions/favourite'
+import {postFavourite, fetchFavourites, deleteFavourite} from './actions/favourite'
 import Nav from './components/nav'
 import NotFound from './components/notFound'
 import './App.css'
@@ -18,7 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchHouses:() => {dispatch(fetchHouses());},
   fetchFavourites:()=> {dispatch(fetchFavourites());},
   postHouse:(name,description,price) => dispatch(postHouse(name,description,price)),
-  postFavourite:(home_id)=>dispatch(postFavourite(home_id))
+  postFavourite:(home_id)=>dispatch(postFavourite(home_id)),
+  deleteFavourite:(home_id)=>dispatch(deleteFavourite(home_id))
 })
 
 const mapStateToProps=(state) => ({
@@ -49,7 +50,7 @@ class App extends Component {
         <Route exact path="/" render={() => <Redirect to="/profile" />} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path ='/home' component={() => <Home houses={this.props.houses} postFavourite={this.props.postFavourite}/>} />
+        <Route exact path ='/home' component={() => <Home houses={this.props.houses} postFavourite={this.props.postFavourite} deleteFavourite={this.props.deleteFavourite}/>} />
         <Route exact path ='/favourites' component={() => <Favourites favourites={this.props.favourites} />} />
         <Route path="/home/:homeId" component={HomeWithId} />
         <Route exact path='/addHouse' component={() => <AddHouse postHouse={this.props.postHouse}/>} />

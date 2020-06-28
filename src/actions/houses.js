@@ -18,7 +18,7 @@ export const housesPostFailed = errmess => ({
 
 export const singleHouse = (singleHouse) => ({
     type: 'SINGLE_HOUSE',
-    payload: errmess
+    payload: singleHouse
 })
 
 export const postHouse = (name,descripton,price)=> {

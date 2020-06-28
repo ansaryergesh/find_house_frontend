@@ -38,6 +38,31 @@ export const  postFavourite = (homeId) => {
     }
 }
 
+export const  deleteFavourite = (homeId) => {
+    return /*FUNCTION*/ (dispatch) => {
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/favourites/${homeId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+              return response
+            } else {
+              throw response
+            }
+        })
+        .then(response=>response.json())
+        .then(response=>dispatch(addFavourite(response)))
+        .catch(error => {
+            alert('Error:\n' + error.message)
+        })
+    }
+}
+
 export const fetchFavourites = () => dispatch => {
     dispatch(favouriteLoading(true));
     return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/favourites`,{
