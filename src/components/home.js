@@ -5,6 +5,7 @@ import { Loading} from './Loader';
 // import AddFavourite from './favourAdd';
 import {postFavourite} from '../actions/favourite';
 
+
 const Home = props => {
   const handleClick = (e, homeId) => {
     e.preventDefault();
@@ -28,11 +29,12 @@ const Home = props => {
       </div>
     );
   }
+  const sorted = props.houses.houses.sort(function(a,b) {return b.id - a.id});
   return (
     <div>
       <h2 style={{textAlign: 'center'}}>List of Houses</h2>
     <div className='ui four column stackable grid'>
-        {props.houses.houses.map(house => (
+        {sorted.map(house => (
               <Grid.Column>
                 {/* <Segment> */}
                 <div key={house.id}>
@@ -44,8 +46,9 @@ const Home = props => {
                       <Card.Header className="houseName">{house.name}</Card.Header>
                       <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
                       <Card.Description>{house.price}</Card.Description>
-                      <Button onClick={e=> handleClick(e, house.id)} icon>
-                        <Icon name='heart'/>
+
+                      <Button  onClick={e=> handleClick(e, house.id)} icon>
+                        <Icon color='black' name='heart'/>
                       </Button>
                       </Card.Content>
                  

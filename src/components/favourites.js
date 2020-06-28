@@ -26,31 +26,39 @@ const Favourites = props => {
       </div>
     );
   }
+  const lengthFav = props.favourites.favourites.length
+  if (lengthFav == 0) {
+    return (
+      <div>
+        <h2 style={{textAlign: 'center'}}>List of Favourites</h2>
+        <i className='heart outline'></i>
+        <br></br>  <br></br>  <br></br>
+        <Image className='ui centered grid' src='https://lh3.googleusercontent.com/proxy/Q7RCqJMmlY1k45V2FpuzqOld9Lodvy8wHgkFGxx6QrTzHf_DoAWWQ8BW2y6u-LorkVMaLh5QjRsHtJuNkkAsRzMZhw' />
+        <br></br> <br></br> <br></br> <br></br>
+        <p style={{textAlign: 'center', fontSize: '25px'}}>No Favourites Yet</p>
+      </div>
+    )
+  }
   return (
     <div>
       <h2 style={{textAlign: 'center'}}>List of Favourites</h2>
     <div className='ui four column stackable grid'>
-    
-    
-        {props.favourites.favourites.map(house => (
-  
+        {props.favourites.favourites.map(favourite => (
               <Grid.Column>
                 {/* <Segment> */}
-                <div key={house.id}>
+                <div key={favourite.id}>
                   <Card className='ui fluid card'>
-                    <Link to={`/home/${house.id}`}>
+                    <Link to={`/home/${favourite.id}`}>
                       <Image width="100%" src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnaLeVAeQkPPz720Kq9WxuAVqqHTCihrX8SQ&usqp=CAU' />
                       </Link>
                       <Card.Content>
-                      <Card.Header className="houseName">{house.name}</Card.Header>
-                      <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
-                      <Card.Description>{house.price}</Card.Description>
+                      <Card.Header className="houseName">{favourite.name}</Card.Header>
+                      <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(favourite.created_at)))}</Card.Meta>
+                      <Card.Description>{favourite.price}</Card.Description>
                       {/* <Button onClick={e=> handleClick(e, house.id)} icon>
                         <Icon name='heart'/>
                       </Button> */}
                       </Card.Content>
-                 
-
                   </Card>
           </div>
                 {/* </Segment> */}
@@ -64,5 +72,8 @@ const Favourites = props => {
   );
 };
 
-export default withAuth(Favourites);
+export default Favourites;
+
+
+
 

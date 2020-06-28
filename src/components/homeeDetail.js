@@ -20,7 +20,7 @@ function RenderHome({house,onclick}) {
     )
 }
 
-const HomeDetail = (props) => {
+const HomeDetail = props => {
     if (props.isLoading) {
       return (
         <div className="container">
@@ -39,7 +39,7 @@ const HomeDetail = (props) => {
         </div>
       );
     }
-    if (props.house) {
+    else if (props.house) {
       return (
         <div className="container">
           <div className="row">

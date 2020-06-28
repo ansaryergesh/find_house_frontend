@@ -16,6 +16,11 @@ export const housesPostFailed = errmess => ({
 })
 
 
+export const singleHouse = (singleHouse) => ({
+    type: 'SINGLE_HOUSE',
+    payload: errmess
+})
+
 export const postHouse = (name,descripton,price)=> {
     return /*FUNCTION*/ (dispatch) => {
         dispatch({ type: 'HOUSE_POST_LOADING' })
@@ -48,6 +53,33 @@ export const postHouse = (name,descripton,price)=> {
 export const fetchHouses = () => dispatch => {
     dispatch(houseLoading(true));
     return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`,{
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+    })
+    .then(response=> {
+        if(response.ok) {
+            return response;
+        }
+
+        const error = new Error(`Error ${response.status}: ${response.statusText}`);
+        error.response =response;
+        throw error;
+    },
+    error=> {
+        const errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(homes =>dispatch(postHouseSuccess(homes)))
+    .catch(error=> dispatch(housesFailed(error.message)));
+}
+
+export const fetchHouse = (houseId) => dispatch => {
+    dispatch(houseLoading(true));
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes/${houseId}`,{
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
