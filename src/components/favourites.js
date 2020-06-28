@@ -42,14 +42,14 @@ const Favourites = props => {
   return (
     <div>
       <h2 style={{textAlign: 'center'}}>List of Favourites</h2>
-    <div className='ui four column stackable grid'>
+    <div className='container ui one column stackable grid'>
         {props.favourites.favourites.map(favourite => (
               <Grid.Column>
                 {/* <Segment> */}
                 <div key={favourite.id}>
                   <Card className='ui fluid card'>
                     <Link to={`/home/${favourite.id}`}>
-                      <Image width="100%" src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnaLeVAeQkPPz720Kq9WxuAVqqHTCihrX8SQ&usqp=CAU' />
+                      <Image width="100%" src='https://wallpapercave.com/wp/wp2124316.jpg' />
                       </Link>
                       <Card.Content>
                       <Card.Header className="houseName">{favourite.name}</Card.Header>

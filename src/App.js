@@ -50,7 +50,7 @@ class App extends Component {
         <Route exact path="/" render={() => <Redirect to="/profile" />} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path ='/home' component={() => <Home houses={this.props.houses} postFavourite={this.props.postFavourite} deleteFavourite={this.props.deleteFavourite}/>} />
+        <Route exact path ='/home' component={() => <Home favourites={this.props.favourites} houses={this.props.houses} postFavourite={this.props.postFavourite} deleteFavourite={this.props.deleteFavourite}/>} />
         <Route exact path ='/favourites' component={() => <Favourites favourites={this.props.favourites} />} />
         <Route path="/home/:homeId" component={HomeWithId} />
         <Route exact path='/addHouse' component={() => <AddHouse postHouse={this.props.postHouse}/>} />

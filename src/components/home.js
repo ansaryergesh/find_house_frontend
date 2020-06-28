@@ -12,6 +12,20 @@ const Home = props => {
     props.postFavourite(homeId);
   };
 
+  // function Buttons({ houseId}) {
+
+  //       return props.favoureId = houseId ?  (
+        
+  //         <Button  onClick={e=> handleRemove(e, houseId)} icon>
+  //         <Icon color='red' name='heart'/>
+  //       </Button>
+  //       ):(
+  //       <Button  onClick={e=> handleClick(e, houseId)} icon>
+  //         <Icon color='black' name='heart'/>
+  //       </Button>
+  //     )
+  // }
+
   const handleRemove = (e, homeId) => {
     e.preventDefault();
     props.deleteFavourite(homeId);
@@ -38,20 +52,21 @@ const Home = props => {
   return (
     <div>
       <h2 style={{textAlign: 'center'}}>List of Houses</h2>
-    <div className='ui four column stackable grid'>
+    <div className='container ui one column stackable grid'>
         {sorted.map(house => (
               <Grid.Column>
                 {/* <Segment> */}
                 <div key={house.id}>
                   <Card className='ui fluid card'>
                     <Link to={`/home/${house.id}`}>
-                      <Image width="100%" src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnaLeVAeQkPPz720Kq9WxuAVqqHTCihrX8SQ&usqp=CAU' />
+                      <Image width="100%" src='https://wallpapercave.com/wp/wp2124316.jpg' />
                       </Link>
                       <Card.Content>
                       <Card.Header className="houseName">{house.name}</Card.Header>
                       <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
-                      <Card.Description>{house.price}</Card.Description>
-
+                      <Card.Description>{house.price} $</Card.Description>
+                      <br></br>  <br></br>  <br></br>
+                      <Button>View Home</Button>
                       <Button  onClick={e=> handleClick(e, house.id)} icon>
                         <Icon color='black' name='heart'/>
                       </Button>
@@ -69,8 +84,9 @@ const Home = props => {
          
          
         ))}
+        </div>
       </div>
-      </div>
+     
   
   );
 };
