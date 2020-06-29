@@ -40,7 +40,7 @@ npm run build
 
 ## Screenshot
 
-![alt text](screens.png)
+![alt text](screens.jpg)
 
 ## Future Features
 
