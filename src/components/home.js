@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { Card, Icon, Image,Header, Grid, Segment,Button } from 'semantic-ui-react'
+import React from 'react';
+import { Card, Icon, Image, Grid,Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { Loading} from './Loader';
-// import AddFavourite from './favourAdd';
-import {postFavourite} from '../actions/favourite';
 
 
 const Home = props => {
@@ -11,20 +9,6 @@ const Home = props => {
     e.preventDefault();
     props.postFavourite(homeId);
   };
-
-  // function Buttons({ houseId}) {
-
-  //       return props.favoureId = houseId ?  (
-        
-  //         <Button  onClick={e=> handleRemove(e, houseId)} icon>
-  //         <Icon color='red' name='heart'/>
-  //       </Button>
-  //       ):(
-  //       <Button  onClick={e=> handleClick(e, houseId)} icon>
-  //         <Icon color='black' name='heart'/>
-  //       </Button>
-  //     )
-  // }
 
   const handleRemove = (e, homeId) => {
     e.preventDefault();
@@ -78,7 +62,6 @@ const Home = props => {
 
                   </Card>
           </div>
-                {/* </Segment> */}
               </Grid.Column>
          
          
