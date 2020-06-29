@@ -44,6 +44,7 @@ npm run build
 
 ## Future Features
 
+- Add registration form to register account
 - Make function to rate house
 - Make function to add comment for house
 - Improve UI of application
