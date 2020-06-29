@@ -45,7 +45,8 @@ class App extends Component {
           house={this.props.houses.houses.filter(house => house.id === parseInt(match.params.idHouse, 10))[0]}
           isLoading={this.props.houses.isLoading}
           errMess={this.props.houses.errMess}
-          deleteFavourite={this.props.deleteFavourite} />}
+          deleteFavourite={this.props.deleteFavourite}
+          postFavourite={this.props.postFavourite}/>}
           />
         <Route exact path ='/favourites' component={() => <Favourites favourites={this.props.favourites}  deleteFavourite={this.props.deleteFavourite} />} />
         <Route exact path='/addHouse' component={() => <AddHouse postHouse={this.props.postHouse}/>} />

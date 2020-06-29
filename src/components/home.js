@@ -67,11 +67,11 @@ const Home = props => {
                       <Card.Description>{house.price} $</Card.Description>
                       <br></br>  <br></br>  <br></br>
                       <Button  onClick={e=> handleClick(e, house.id)} icon>
-                        <Icon color='black' name='heart'/>
+                        <Icon color='black' name='heart'/> Favoure
                       </Button>
 
                       <Button  onClick={e=> handleRemove(e, house.id)} icon>
-                        <Icon color='red' name='heart'/>
+                        <Icon color='red' name='heart'/> Unfavoure
                       </Button>
                       </Card.Content>
                  

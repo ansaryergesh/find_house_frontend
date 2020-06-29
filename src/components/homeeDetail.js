@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Card, Image ,Button, Icon, Divider, Header,Comment, Form,} from 'semantic-ui-react'
 import { Loading} from './Loader';
 import { Link } from 'react-router-dom';
-function RenderHome({house,onclick, remove}) {
+function RenderHome({house,onclick, add,remove}) {
     return (
       <div className='container ui one column stackable grid'>
             <Divider horizontal>
@@ -25,11 +25,17 @@ function RenderHome({house,onclick, remove}) {
                     <Card.Description>Description: {house.descripton}</Card.Description>
 
                     <br></br>
+
+                    <Button  onClick={e=> add(e, house.id)} icon>
+                        <Icon color='black' name='heart'/>
+                      </Button>
+
                     <Button  onClick={e=> remove(e, house.id)} icon>
                         <Icon color='red' name='heart'/>
                       </Button>
                     </Card.Content>
 
+                    
                     
                     <Button  color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
             </Card>
@@ -45,6 +51,11 @@ const HomeDetail = props => {
     e.preventDefault();
     props.deleteFavourite(homeId);
   }
+
+  const handleClick = (e, homeId) => {
+    e.preventDefault();
+    props.postFavourite(homeId);
+  };
     if (props.isLoading) {
       return (
         <div className="container">
@@ -80,7 +91,7 @@ const HomeDetail = props => {
           </div>
           <div className="row">
             <div className="col-12">
-              <RenderHome house={props.house} remove={handleRemove} />
+              <RenderHome house={props.house} remove={handleRemove} add={handleClick} />
 
 
               
