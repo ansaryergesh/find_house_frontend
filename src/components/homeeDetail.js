@@ -1,26 +1,50 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Card, Image, Grid } from 'semantic-ui-react'
+import { Card, Image ,Button, Icon, Divider, Header,Comment, Form,} from 'semantic-ui-react'
 import { Loading} from './Loader';
-
-function RenderHome({house,onclick}) {
+import { Link } from 'react-router-dom';
+function RenderHome({house,onclick, remove}) {
     return (
-            <Grid textAlign='center' verticalAlign='middle'>
+      <div className='container ui one column stackable grid'>
+            <Divider horizontal>
+              <Header as='h4'>
+                <Icon name='tag' />
+                {house.name}
+              </Header>
+            </Divider>
+            <Card className='ui fluid card'>
                 {/* <h2>{home.name}</h2> */}
-                <Card>
-                    <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnaLeVAeQkPPz720Kq9WxuAVqqHTCihrX8SQ&usqp=CAU' />
+                
+                    <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
                     <Card.Content>
                     <Card.Header>{house.name}</Card.Header>
+                    <br></br>
                     <Card.Meta>Price: {house.price} $</Card.Meta>
-                    <Card.Description>{house.descripton}</Card.Description>
+                    <hr></hr>
+                    <br></br>
+                    <Card.Description>Description: {house.descripton}</Card.Description>
+
+                    <br></br>
+                    <Button  onClick={e=> remove(e, house.id)} icon>
+                        <Icon color='red' name='heart'/>
+                      </Button>
                     </Card.Content>
-                </Card>
-            </Grid>
-    
+
+                    
+                    <Button  color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
+            </Card>
+            <br></br>
+
+      </div>
+  
     )
 }
 
 const HomeDetail = props => {
+  const handleRemove = (e, homeId) => {
+    e.preventDefault();
+    props.deleteFavourite(homeId);
+  }
     if (props.isLoading) {
       return (
         <div className="container">
@@ -42,20 +66,94 @@ const HomeDetail = props => {
     else if (props.house) {
       return (
         <div className="container">
-          <div className="row">
+        
             {/* <Breadcrumb>
               <BreadcrumbItem><Link to="/Home">Home</Link></BreadcrumbItem>
               <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
               <BreadcrumbItem active>{props.meal.name}</BreadcrumbItem>
             </Breadcrumb> */}
             <div className="col-12">
-              <h3>{props.house.name}</h3>
-              <hr />
-            </div>
+            <Link to={`/home`}>
+            <Button color = 'orange' className='container' icon><Icon name='angle left' />Back</Button>
+            </Link>
+              <br></br>  <br></br>  <br></br>
           </div>
           <div className="row">
             <div className="col-12">
-              <RenderHome house={props.house} />
+              <RenderHome house={props.house} remove={handleRemove} />
+
+
+              
+            <Comment.Group className='container'>
+              <Header as='h3' dividing>
+                Comments
+              </Header>
+
+              <Comment>
+                <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/jenny.jpg' />
+                <Comment.Content>
+                  <Comment.Author as='a'>Matt</Comment.Author>
+                  <Comment.Metadata>
+                    <div>Today at 5:42PM</div>
+                  </Comment.Metadata>
+                  <Comment.Text>How artistic!</Comment.Text>
+                  <Comment.Actions>
+                    <Comment.Action>Reply</Comment.Action>
+                  </Comment.Actions>
+                </Comment.Content>
+              </Comment>
+
+              <Comment>
+                <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg' />
+                <Comment.Content>
+                  <Comment.Author as='a'>Elliot Fu</Comment.Author>
+                  <Comment.Metadata>
+                    <div>Yesterday at 12:30AM</div>
+                  </Comment.Metadata>
+                  <Comment.Text>
+                    <p>This has been very useful for my research. Thanks as well!</p>
+                  </Comment.Text>
+                  <Comment.Actions>
+                    <Comment.Action>Reply</Comment.Action>
+                  </Comment.Actions>
+                </Comment.Content>
+                <Comment.Group>
+                  <Comment>
+                    <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
+                    <Comment.Content>
+                      <Comment.Author as='a'>Jenny Hess</Comment.Author>
+                      <Comment.Metadata>
+                        <div>Just now</div>
+                      </Comment.Metadata>
+                      <Comment.Text>Elliot you are always so right :)</Comment.Text>
+                      <Comment.Actions>
+                        <Comment.Action>Reply</Comment.Action>
+                      </Comment.Actions>
+                    </Comment.Content>
+                  </Comment>
+                </Comment.Group>
+              </Comment>
+
+              <Comment>
+                <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+                <Comment.Content>
+                  <Comment.Author as='a'>Joe Henderson</Comment.Author>
+                  <Comment.Metadata>
+                    <div>5 days ago</div>
+                  </Comment.Metadata>
+                  <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
+                  <Comment.Actions>
+                    <Comment.Action>Reply</Comment.Action>
+                  </Comment.Actions>
+                </Comment.Content>
+              </Comment>
+
+          <Form reply>
+            <Form.TextArea />
+            <Button color = 'orange' content='Add Reply' labelPosition='left' icon='edit'  />
+          </Form>
+        </Comment.Group>
+        <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>
             </div>
           </div>
         </div>

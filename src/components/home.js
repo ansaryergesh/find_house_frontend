@@ -66,7 +66,6 @@ const Home = props => {
                       <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
                       <Card.Description>{house.price} $</Card.Description>
                       <br></br>  <br></br>  <br></br>
-                      <Button>View Home</Button>
                       <Button  onClick={e=> handleClick(e, house.id)} icon>
                         <Icon color='black' name='heart'/>
                       </Button>

@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { Card, Icon, Image,Header, Grid, Segment,Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { Loading} from './Loader';
+import { connect } from 'react-redux'
 import withAuth from '../hocs/withAuth';
 // import AddFavourite from './favourAdd';
 import {postFavourite} from '../actions/favourite';
 
 const Favourites = props => {
-
+  
+  const handleRemove = (e, homeId) => {
+    e.preventDefault();
+    props.deleteFavourite(homeId);
+  }
   if (props.favourites.isLoading) {
     return (
       <div className="container">
@@ -58,6 +63,10 @@ const Favourites = props => {
                       {/* <Button onClick={e=> handleClick(e, house.id)} icon>
                         <Icon name='heart'/>
                       </Button> */}
+                      
+                      <Button  onClick={e=> handleRemove(e, favourite.id)} icon>
+                        <Icon color='red' name='heart'/>
+                      </Button>
                       </Card.Content>
                   </Card>
           </div>
@@ -72,7 +81,8 @@ const Favourites = props => {
   );
 };
 
-export default Favourites;
+
+export default Favourites
 
 
 
