@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon,Button } from 'semantic-ui-react'
+import { Icon,Button } from 'semantic-ui-react'
 import {postFavourite} from '../actions/favourite';
 import withAuth from '../hocs/withAuth';
 import { connect } from 'react-redux'
