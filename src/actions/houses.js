@@ -53,7 +53,6 @@ export const postHouse = (name,descripton,price)=> {
         })
         .then(response=>response.json())
         .then(response=>dispatch(postHouseSuccess(response)))
-        .then(dispatch(successMessage('Successfully added')))
         .catch(response=> response.json().then(e => dispatch(housesPostFailed('Please fill all the form'))))
     }
 }

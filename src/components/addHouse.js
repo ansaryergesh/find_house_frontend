@@ -8,14 +8,15 @@ import { postHouse } from '../actions/houses'
 
 const required = (val) => val && val.length;
 
-const mapStateToProps = () => ({
-  
+const mapStateToProps = (state) => ({
+    message: state.message || []
 })
+
   
 const mapDispacthToProps = dispatch => ({
 });
 class AddHouse extends Component {
-    state = { name: '', descripton: '', price: '', redirectTo: false}
+    state = { name: '', descripton: '', price: '', redirectTo: false, visible: true}
     handleChange = (e, semanticInputData) => {
         e.preventDefault();
         this.setState({ [semanticInputData.name]: semanticInputData.value })
@@ -25,15 +26,30 @@ class AddHouse extends Component {
         e.preventDefault()//semantic forms preventDefault for you
         this.props.postHouse(this.state.name, this.state.descripton, this.state.price)
         // console.log(this.state.name, this.state.descripton, this.state.price)
-        this.setState({ name: '', descripton: '', price: '', redirectTo: true }) //reset form to initial state
+        this.setState({ name: '', descripton: '', price: '', redirectTo: true, visible: false }) //reset form to initial state
+    }
+
+    
+    handleDismiss = () => {
+        this.setState({ visible: false })
+        setTimeout(() => {
+        this.setState({ visible: false })
+        }, 5000)
     }
     
     render() {
         return (
             <div>
                 <h1>Add House</h1>
+                {this.props.message.error !==null && this.state.visible == true ?
+                <Message className='container'
+                error
+                    onDismiss={this.handleDismiss}
+                    header={this.props.message.error}
+                />
+                : null }
         {/* <h2>{this.props.session.user.id}</h2> */}
-                <Segment>
+                <Segment className='container'>
                     <Form
                     onSubmit={this.handleSubmit}
                     size="mini"

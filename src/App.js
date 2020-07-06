@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps=(state) => ({
   houses: state.houses || [],
   favourites: state.favourites || [],
+  message: state.message || []
 })
 
 class App extends Component {
