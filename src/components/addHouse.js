@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { Button, Form, Segment, Message,} from 'semantic-ui-react'
 // import {Form,Input} from 'semantic-ui-react-form-validator'
-import { postHouse } from '../actions/houses'
+import { postHouse,emptyMessage } from '../actions/houses'
 
 const required = (val) => val && val.length;
 
@@ -32,9 +32,12 @@ class AddHouse extends Component {
     
     handleDismiss = () => {
         this.setState({ visible: false })
-        setTimeout(() => {
-        this.setState({ visible: false })
-        }, 5000)
+        this.props.emptyMessage();
+
+    }
+
+    handleMessage = () => {
+        this.setState({visible: true})
     }
     
     render() {
@@ -48,7 +51,13 @@ class AddHouse extends Component {
                     header={this.props.message.error}
                 />
                 : null }
-        {/* <h2>{this.props.session.user.id}</h2> */}
+                {this.props.message.error ===null && this.props.message.success !== null && this.state.visible == true ?
+                <Message className='container'
+                success
+                    onDismiss={this.handleDismiss}
+                    header={this.props.message.success}
+                />
+                : null }
                 <Segment className='container'>
                     <Form
                     onSubmit={this.handleSubmit}
@@ -97,4 +106,4 @@ class AddHouse extends Component {
     }
 }
 
-export default withAuth(connect(mapStateToProps, { postHouse })(AddHouse))
+export default withAuth(connect(mapStateToProps, { postHouse,emptyMessage })(AddHouse))

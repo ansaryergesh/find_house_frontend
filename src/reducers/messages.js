@@ -11,6 +11,10 @@ export const messages = (state = {
             return {
                 ...state, success: null, error: action.payload
             }
+        case 'EMPTY_MESSAGE':
+            return {
+                ...state, success: null, error: null
+            }
         default:
             return state;
     }
