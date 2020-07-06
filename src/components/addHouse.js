@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import withAuth from '../hocs/withAuth';
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
-import { Button, Form, Segment, Message } from 'semantic-ui-react'
+import { Button, Form, Segment, Message,} from 'semantic-ui-react'
 // import {Form,Input} from 'semantic-ui-react-form-validator'
 import { postHouse } from '../actions/houses'
 
@@ -39,7 +39,7 @@ class AddHouse extends Component {
                     size="mini"
                     key="mini"
                     >
-                    <Message error header={this.props.housesPostFailed ? this.props.error : null} />
+                    <Message error header={this.props.errMess} />
                     <Form.Group widths="equal">
                         <Form.Input
                         icon='building outline'

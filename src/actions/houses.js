@@ -1,3 +1,5 @@
+import messages from "../reducers/messages";
+
 export const houseLoading = () => ({
   type: 'HOUSES_LOADING',
 })
@@ -11,8 +13,13 @@ export const postHouseSuccess = (house) => ({
     payload: house
 });
 export const housesPostFailed = errmess => ({
-    type: 'HOUSES_POST_FAILED',
+    type: 'ERROR_MESSAGE',
     payload: errmess,
+})
+
+export const successMessage = message => ({
+    type: 'SUCCESS_MESSAGE',
+    payload: message
 })
 
 
@@ -46,7 +53,8 @@ export const postHouse = (name,descripton,price)=> {
         })
         .then(response=>response.json())
         .then(response=>dispatch(postHouseSuccess(response)))
-        .catch(response=> response.json().then(e => dispatch(housesPostFailed(e.message))))
+        .then(dispatch(successMessage('Successfully added')))
+        .catch(response=> response.json().then(e => dispatch(housesPostFailed('Please fill all the form'))))
     }
 }
 

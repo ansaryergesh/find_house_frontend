@@ -14,7 +14,7 @@ const housesReducer = (state={
             };
         case 'HOUSES_FAILED':
             return {
-                ...state, isLoading: false, errMess: action.payloead, houses: [],
+                ...state, isLoading: false, errMess: action.payload, houses: [],
             }
         default:
             return state
