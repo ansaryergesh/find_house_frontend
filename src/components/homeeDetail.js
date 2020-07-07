@@ -60,7 +60,7 @@ const HomeDetail = props => {
             </Breadcrumb> */}
             <div className="col-12">
             <Link to={`/home`}>
-            <Button color = 'orange' className='container' icon><Icon name='angle left' />Back</Button>
+            <Button color = 'orange' className='container backButton' icon><Icon name='angle left' />Back</Button>
             </Link>
               <br></br>  <br></br>  <br></br>
           </div>
