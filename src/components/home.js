@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Image, Grid,Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid,Button, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { Loading} from './Loader';
 
@@ -36,6 +36,7 @@ const Home = props => {
   return (
     <div>
       <h2 style={{textAlign: 'center'}}>List of Houses</h2>
+
     <div className='container ui one column stackable grid'>
         {sorted.map(house => (
               <Grid.Column>
@@ -50,6 +51,12 @@ const Home = props => {
                       <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
                       <Card.Description>{house.price} $</Card.Description>
                       <br></br>  <br></br>  <br></br>
+                      {props.message.success !==null ?
+                         <Message className='container favoureMessage'
+                         success
+                             header={props.message.success}
+                         />
+                      : null }
                       <Button  onClick={e=> handleClick(e, house.id)} icon>
                         <Icon color='black' name='heart'/> Favoure
                       </Button>
@@ -58,6 +65,7 @@ const Home = props => {
                         <Icon color='red' name='heart'/> Unfavoure
                       </Button>
                       </Card.Content>
+                      
                  
 
                   </Card>

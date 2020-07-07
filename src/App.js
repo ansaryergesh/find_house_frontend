@@ -43,7 +43,7 @@ class App extends Component {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path='/registration' component={Register} />
-        <Route exact path ='/home' component={() => <Home favourites={this.props.favourites} houses={this.props.houses} postFavourite={this.props.postFavourite} deleteFavourite={this.props.deleteFavourite}/>} />
+        <Route exact path ='/home' component={() => <Home favourites={this.props.favourites} houses={this.props.houses} message= {this.props.message} postFavourite={this.props.postFavourite} deleteFavourite={this.props.deleteFavourite}/>} />
         <Route path="/home/:idHouse" render={({match}) => <HomeDetail  
           house={this.props.houses.houses.filter(house => house.id === parseInt(match.params.idHouse, 10))[0]}
           isLoading={this.props.houses.isLoading}

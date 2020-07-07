@@ -1,3 +1,5 @@
+import {successMessage, emptyMessage} from './houses';
+
 export const addFavourite = (favourite) => ({
     type: 'ADD_FAVOURITE',
     payload: favourite
@@ -32,6 +34,10 @@ export const  postFavourite = (homeId) => {
         })
         .then(response=>response.json())
         .then(response=>dispatch(addFavourite(response)))
+        .then(dispatch(successMessage('The house added to the favorites')))
+        .then(setTimeout(() => {
+            dispatch(emptyMessage())
+            }, 800))
         .catch(error => {
             alert('Error:\n' + error.message)
         })
