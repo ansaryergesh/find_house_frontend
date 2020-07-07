@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import { withRouter, Redirect } from 'react-router'
-import { loginUser } from '../actions/user'
+import { registerUser } from '../actions/user'
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-class LoginForm extends React.Component {
-  state = { username: '', password: '' }
+class Register extends React.Component {
+  state = { username: '', password: '', bio: ''}
 
   // handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -15,8 +15,8 @@ class LoginForm extends React.Component {
   }
 
   handleLoginSubmit = () => { //semantic forms preventDefault for you
-    this.props.loginUser(this.state.username, this.state.password)
-    this.setState({ username: '', password: '' }) //reset form to initial state
+    this.props.registerUser(this.state.username, this.state.password, this.state.bio)
+    this.setState({ username: '', password: '', bio: '' }) //reset form to initial state
   }
 
   render() {
@@ -25,12 +25,10 @@ class LoginForm extends React.Component {
     ) : (
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 500 }}>
-    <p>username: user; password:password</p>
-      <p>username: ansar; password:password</p>
+
       <Header as='h2' color='orange' textAlign='center'>
-          Sign In
+          Registration
       </Header>
-      <p style={{letterSpacing: '.95px'}}> Hello There. <br></br>Sign In and start managing your system</p>
       <Form size='large'
           onSubmit={this.handleLoginSubmit}
           size="mini"
@@ -50,6 +48,14 @@ class LoginForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.username}
             />
+              <Form.Input
+              icon='book'
+              iconPosition='left'
+              placeholder="Bio"
+              name="bio"
+              onChange={this.handleChange}
+              value={this.state.bio}
+            />
             <Form.Input
               icon='lock'
               iconPosition='left'
@@ -60,11 +66,11 @@ class LoginForm extends React.Component {
               value={this.state.password}
             />
      
-          <Button color='orange' fluid size='large' type="submit">Login</Button>
+          <Button color='orange' fluid size='large' type="submit">Register</Button>
         
       </Segment>
       </Form>
-      <p className='register'>Already have an account? <Link to='/registration'>  Register</Link></p>
+      <p className='register'>Registred already? <Link to='/login'>  Login</Link></p>
       </Grid.Column>
   </Grid>
     )
@@ -109,4 +115,4 @@ const mapStateToProps = ({ usersReducer: { authenticatingUser, failedLogin, erro
 // export default connectedToReduxHOCWithRouterLoginForm
 
 
-export default connect(mapStateToProps, { loginUser })(LoginForm)
+export default connect(mapStateToProps, { registerUser })(Register)
