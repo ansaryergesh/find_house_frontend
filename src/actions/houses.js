@@ -56,7 +56,7 @@ export const postHouse = (name,descripton,price)=> {
             }
         })
         .then(response=>response.json())
-        .then(response=>dispatch(houseSuccess(response)))
+        .then(response=>dispatch(postHouseSuccess(response)))
         .then(setTimeout(() => {
             dispatch(emptyMessage())
             }, 3000))

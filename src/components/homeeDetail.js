@@ -3,59 +3,34 @@ import { connect } from 'react-redux'
 import { Card, Image ,Button, Icon, Divider, Header,Comment, Form,} from 'semantic-ui-react'
 import { Loading} from './Loader';
 import { Link } from 'react-router-dom';
-function RenderHome({house,onclick, add,remove}) {
-    return (
-      <div className='container ui one column stackable grid'>
-            <Divider horizontal>
-              <Header as='h4'>
-                <Icon name='tag' />
-                {house.name}
-              </Header>
-            </Divider>
-            <Card className='ui fluid card'>
-                {/* <h2>{home.name}</h2> */}
-                
-                    <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
-                    <Card.Content>
-                    <Card.Header>{house.name}</Card.Header>
-                    <br></br>
-                    <Card.Meta>Price: {house.price} $</Card.Meta>
-                    <hr></hr>
-                    <br></br>
-                    <Card.Description>Description: {house.descripton}</Card.Description>
-
-                    <br></br>
-
-                    <Button  onClick={e=> add(e, house.id)} icon>
-                        <Icon color='black' name='heart'/>
-                      </Button>
-
-                    <Button  onClick={e=> remove(e, house.id)} icon>
-                        <Icon color='red' name='heart'/>
-                      </Button>
-                    </Card.Content>
-
-                    
-                    
-                    <Button  color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
-            </Card>
-            <br></br>
-
-      </div>
-  
-    )
-}
 
 const HomeDetail = props => {
   const handleRemove = (e, homeId) => {
     e.preventDefault();
     props.deleteFavourite(homeId);
+    props.isFavoure(homeId)
   }
 
   const handleClick = (e, homeId) => {
     e.preventDefault();
     props.postFavourite(homeId);
+    props.isFavoure(homeId)
   };
+
+  function Buttons({ houseId}) {
+    return (
+      <div>
+   <Button  onClick={e=> handleClick(e, houseId)} icon>
+    <Icon color='black' name='heart'/>
+   </Button>
+     
+     <Button  onClick={e=> handleRemove(e, houseId)} icon>
+       <Icon color='red' name='heart'/>
+     </Button>
+     </div>
+    )
+  }
+
     if (props.isLoading) {
       return (
         <div className="container">
@@ -91,7 +66,38 @@ const HomeDetail = props => {
           </div>
           <div className="row">
             <div className="col-12">
-              <RenderHome house={props.house} remove={handleRemove} add={handleClick} />
+            <div className='container ui one column stackable grid'>
+            <Divider horizontal>
+              <Header as='h4'>
+                <Icon name='tag' />
+                {props.house.name}
+              </Header>
+            </Divider>
+            <Card className='ui fluid card'>
+                {/* <h2>{home.name}</h2> */}
+                
+                    <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
+                    <Card.Content>
+                    <Card.Header>{props.house.name}</Card.Header>
+                    <br></br>
+                    <Card.Meta>Price: {props.house.price} $</Card.Meta>
+                    <hr></hr>
+                    <br></br>
+                    <Card.Description>Description: {props.house.descripton}</Card.Description>
+
+                    <br></br>
+
+                    <Buttons houseId={props.house.id} />
+                    </Card.Content>
+
+                    
+                    
+                    <Button  color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
+            </Card>
+            <br></br>
+
+      </div>
+  
 
 
               

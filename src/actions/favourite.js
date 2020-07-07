@@ -9,6 +9,12 @@ export const favouriteFailed = errmess => ({
     payload: errmess,
 })
 
+
+export const favouriteStatus = status => ({
+    type: 'STATUS_FAVOURITE',
+    payload: status
+})
+
 export const favouriteLoading = () => ({
     type: 'FAVOURITE_LOADING'
 })
@@ -44,6 +50,7 @@ export const  postFavourite = (homeId) => {
     }
 }
 
+
 export const  deleteFavourite = (homeId) => {
     return /*FUNCTION*/ (dispatch) => {
         fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/favourites/${homeId}`, {
@@ -62,6 +69,10 @@ export const  deleteFavourite = (homeId) => {
             }
         })
         .then(response=>response.json())
+        .then(dispatch(successMessage('The house deleted from the favourites')))
+        .then(setTimeout(() => {
+            dispatch(emptyMessage())
+            }, 800))
         .then(response=>dispatch(addFavourite(response)))
         .catch(error => {
             alert('Error:\n' + error.message)
@@ -94,4 +105,32 @@ export const fetchFavourites = () => dispatch => {
     .then(response => response.json())
     .then(favourites =>dispatch(addFavourite(favourites)))
     .catch(error=> dispatch(favouriteFailed(error.message)));
+}
+
+
+export const isFavoure = (homeId) => dispatch => {
+    dispatch(favouriteLoading(true));
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/favourites/${homeId}`,{
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        },
+    })
+    .then(response=> {
+        if(response.ok) {
+            return response;
+        }
+
+        const error = new Error(`Error ${response.status}: ${response.statusText}`);
+        error.response =response;
+        throw error;
+    },
+    error=> {
+        const errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(status =>dispatch(favouriteStatus(status)))
+    .catch(error=> dispatch(successMessage(error.message)));
 }

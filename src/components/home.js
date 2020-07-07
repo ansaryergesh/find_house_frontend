@@ -10,6 +10,11 @@ const Home = props => {
     props.postFavourite(homeId);
   };
 
+  const handleOpen = (e,homeId) => {
+    e.preventDefault();
+    props.isFavoure(homeId);
+  }
+
   const handleRemove = (e, homeId) => {
     e.preventDefault();
     props.deleteFavourite(homeId);
@@ -43,9 +48,11 @@ const Home = props => {
                 {/* <Segment> */}
                 <div key={house.id}>
                   <Card className='ui fluid card'>
-                    <Link to={`/home/${house.id}`}>
+          
+                    <Link to={`/home/${house.id}`} >
                       <Image width="100%" src='https://wallpapercave.com/wp/wp2124316.jpg' />
-                      </Link>
+                    </Link>
+                    
                       <Card.Content>
                       <Card.Header className="houseName">{house.name}</Card.Header>
                       <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
@@ -64,15 +71,20 @@ const Home = props => {
                       <Button  onClick={e=> handleRemove(e, house.id)} icon>
                         <Icon color='red' name='heart'/> Unfavoure
                       </Button>
+                      {/* swap logic started */}
+                      {/* {props.favourites.favourites.some(elem=> (elem.id === house.id) ? 
+                        <Button  onClick={e=> handleClick(e, house.id)} icon>
+                          <Icon color='black' name='heart'/>
+                        </Button>
+                        :
+                        <Button  onClick={e=> handleRemove(e, house.id)} icon>
+                          <Icon color='red' name='heart'/>
+                        </Button>
+                      )} */}
                       </Card.Content>
-                      
-                 
-
                   </Card>
           </div>
               </Grid.Column>
-         
-         
         ))}
         </div>
       </div>
