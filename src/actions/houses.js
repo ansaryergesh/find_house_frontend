@@ -57,6 +57,9 @@ export const postHouse = (name,descripton,price)=> {
         })
         .then(response=>response.json())
         .then(response=>dispatch(houseSuccess(response)))
+        .then(setTimeout(() => {
+            dispatch(emptyMessage())
+            }, 3000))
         .catch(response=> response.json().then(e => dispatch(housesPostFailed('Please fill all the form'))))
     }
 }
