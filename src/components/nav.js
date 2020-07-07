@@ -11,7 +11,7 @@ const Nav = ({ user: { loggedIn }, location: { pathname }}) => {
   };
 
   return (
-    <Menu pointing secondary>
+    <Menu  pointing secondary className='ui fixed borderless huge navigationBar'>
       {loggedIn ? (
         <Fragment>
            <Menu fluid widths={5}>
