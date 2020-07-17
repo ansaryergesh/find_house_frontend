@@ -21,9 +21,9 @@ const HomeDetail = props => {
     if(props.favourites.favourites.some(elem=> elem.id === value)) {
       return (
         <div>
-          <Button  onClick={e=> handleRemove(e, value)} icon>
-         <Icon color='red' name='heart'/> 
-       </Button>
+          <Button  onClick={e=> handleRemove(e, value)} icon >
+            <Icon color='red' name='heart'/> 
+          </Button>
         </div>
       )
     }
