@@ -17,18 +17,23 @@ const HomeDetail = props => {
     props.isFavoure(homeId)
   };
 
-  function Buttons({ houseId}) {
-    return (
-      <div>
-   <Button  onClick={e=> handleClick(e, houseId)} icon>
-    <Icon color='black' name='heart'/>
-   </Button>
-     
-     <Button  onClick={e=> handleRemove(e, houseId)} icon>
-       <Icon color='red' name='heart'/>
-     </Button>
-     </div>
-    )
+  function Buttons(value) {
+    if(props.favourites.favourites.some(elem=> elem.id === value)) {
+      return (
+        <div>
+          <Button  onClick={e=> handleRemove(e, value)} icon>
+         <Icon color='red' name='heart'/> 
+       </Button>
+        </div>
+      )
+    }
+      return (
+        <div>
+          <Button  onClick={e=> handleClick(e, value)} icon>
+          <Icon color='black' name='heart'/> 
+        </Button>
+        </div>
+      )
   }
 
     if (props.isLoading) {
@@ -52,12 +57,6 @@ const HomeDetail = props => {
     else if (props.house) {
       return (
         <div className="container">
-        
-            {/* <Breadcrumb>
-              <BreadcrumbItem><Link to="/Home">Home</Link></BreadcrumbItem>
-              <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-              <BreadcrumbItem active>{props.meal.name}</BreadcrumbItem>
-            </Breadcrumb> */}
             <div className="col-12">
             <Link to={`/home`}>
             <Button color = 'orange' className='container backButton' icon><Icon name='angle left' />Back</Button>
@@ -86,11 +85,12 @@ const HomeDetail = props => {
                     <Card.Description>Description: {props.house.descripton}</Card.Description>
 
                     <br></br>
-
-                    <Buttons houseId={props.house.id} />
+                    {
+                        Buttons(props.house.id)
+                    }
                     </Card.Content>
 
-                    
+                  
                     
                     <Button  color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
             </Card>

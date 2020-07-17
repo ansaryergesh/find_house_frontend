@@ -5,7 +5,7 @@ import withAuth from '../hocs/withAuth'
 
 const Profile = ({ avatar, username, bio }) => (
   <Grid textAlign='center' verticalAlign='middle'>
-  <Card>
+  <Card className='profilePage'>
     <Image src='https://semantic-ui.com/images/avatar2/large/matthew.png' />
     <Card.Content>
       <Card.Header>{username}</Card.Header>
@@ -16,25 +16,10 @@ const Profile = ({ avatar, username, bio }) => (
   </Grid>
 )
 
-// const mapStateToProps = (reduxStoreState) => {
-//   return {
-//     avatar: reduxStoreState.usersReducer.user.avatar,
-//     username: reduxStoreState.usersReducer.user.username,
-//     bio: reduxStoreState.usersReducer.user.bio
-//   }
-// }
-
 const mapStateToProps = ({ usersReducer: { user: { avatar, username, bio } } }) => ({
   avatar,
   username,
   bio
 })
-
-// const connectedToReduxHOC = connect(mapStateToProps)
-// const connectedProfile = connectedToReduxHOC(Profile)
-//
-// const withAuthProfile = withAuth(connectedProfile)
-//
-// export default withAuthProfile
 
 export default withAuth(connect(mapStateToProps)(Profile))

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
 import { withRouter, Redirect } from 'react-router'
 import { registerUser } from '../actions/user'
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
@@ -8,15 +7,13 @@ import { Link } from 'react-router-dom';
 class Register extends React.Component {
   state = { username: '', password: '', bio: ''}
 
-  // handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
   handleChange = (e, semanticInputData) => {
     this.setState({ [semanticInputData.name]: semanticInputData.value })
   }
 
-  handleLoginSubmit = () => { //semantic forms preventDefault for you
+  handleLoginSubmit = () => {
     this.props.registerUser(this.state.username, this.state.password, this.state.bio)
-    this.setState({ username: '', password: '', bio: '' }) //reset form to initial state
+    this.setState({ username: '', password: '', bio: '' })
   }
 
   render() {
@@ -77,42 +74,12 @@ class Register extends React.Component {
   }
 }
 
-// const mapStateToProps = ({ usersReducer: { authenticatingUser, failedLogin, error, user, loggedIn } }) => ({
-//   authenticatingUser,
-//   failedLogin,
-//   error,
-//   user,
-//   loggedIn
-// })
-
-// const mapStateToProps = (reduxStoreState) => {
-//   return {
-//     authenticatingUser: reduxStoreState.usersReducer.authenticatingUser,
-//     failedLogin: reduxStoreState.usersReducer.failedLogin,
-//     error: reduxStoreState.usersReducer.error,
-//     loggedIn: reduxStoreState.usersReducer.loggedIn
-//   }
-// }
-
 const mapStateToProps = ({ usersReducer: { authenticatingUser, failedLogin, error, loggedIn } }) => ({
   authenticatingUser,
   failedLogin,
   error,
   loggedIn
 })
-
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loginUser: (username, password) => dispatch(loginUser(username, password))
-//   }
-// }
-
-// const connectedToReduxHOC = connect(mapStateToProps, mapDispatchToProps)
-// const connectedToReduxLoginForm = connectedToReduxHOC(LoginForm)
-// const connectedToReduxHOCWithRouterLoginForm = withRouter(connectedToReduxLoginForm)
-//
-// export default connectedToReduxHOCWithRouterLoginForm
 
 
 export default connect(mapStateToProps, { registerUser })(Register)

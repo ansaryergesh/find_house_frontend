@@ -1,23 +1,41 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Card, Icon, Image, Grid,Button, Message } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Loading} from './Loader';
-
-
-const Home = props => {
+import {connect} from 'react-redux';
+import withAuth from '../hocs/withAuth';
+import {fetchFavourites} from '../actions/favourite'
+const mapStateToProps = (props) => ({
+  favourites: props.favourites
+})
+const Home = (props) => {
   const handleClick = (e, homeId) => {
     e.preventDefault();
     props.postFavourite(homeId);
   };
 
-  const handleOpen = (e,homeId) => {
-    e.preventDefault();
-    props.isFavoure(homeId);
-  }
-
   const handleRemove = (e, homeId) => {
     e.preventDefault();
     props.deleteFavourite(homeId);
+  }
+
+  function Buttons(value) {
+    if(props.favourites.favourites.some(elem=> elem.id === value)) {
+      return (
+        <div>
+          <Button  onClick={e=> handleRemove(e, value)} icon>
+         <Icon color='red' name='heart'/> 
+       </Button>
+        </div>
+      )
+    }
+      return (
+        <div>
+          <Button  onClick={e=> handleClick(e, value)} icon>
+          <Icon color='black' name='heart'/> 
+        </Button>
+        </div>
+      )
   }
   if (props.houses.isLoading) {
     return (
@@ -64,23 +82,9 @@ const Home = props => {
                              header={props.message.success}
                          />
                       : null }
-                      <Button  onClick={e=> handleClick(e, house.id)} icon>
-                        <Icon color='black' name='heart'/> Favoure
-                      </Button>
-
-                      <Button  onClick={e=> handleRemove(e, house.id)} icon>
-                        <Icon color='red' name='heart'/> Unfavoure
-                      </Button>
-                      {/* swap logic started */}
-                      {/* {props.favourites.favourites.some(elem=> (elem.id === house.id) ? 
-                        <Button  onClick={e=> handleClick(e, house.id)} icon>
-                          <Icon color='black' name='heart'/>
-                        </Button>
-                        :
-                        <Button  onClick={e=> handleRemove(e, house.id)} icon>
-                          <Icon color='red' name='heart'/>
-                        </Button>
-                      )} */}
+                      {
+                        Buttons(house.id)
+                      }
                       </Card.Content>
                   </Card>
           </div>
@@ -88,10 +92,7 @@ const Home = props => {
         ))}
         </div>
       </div>
-     
-  
   );
 };
 
-export default Home;
-
+export default connect(mapStateToProps, {fetchFavourites})(Home)
