@@ -1,19 +1,22 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router'
-import { registerUser } from '../actions/user'
-import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router';
+import {
+  Button, Form, Grid, Header, Image, Message, Segment,
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { registerUser } from '../actions/user';
+
 class Register extends React.Component {
-  state = { username: '', password: '', bio: ''}
+  state = { username: '', password: '', bio: '' }
 
   handleChange = (e, semanticInputData) => {
-    this.setState({ [semanticInputData.name]: semanticInputData.value })
+    this.setState({ [semanticInputData.name]: semanticInputData.value });
   }
 
   handleLoginSubmit = () => {
-    this.props.registerUser(this.state.username, this.state.password, this.state.bio)
-    this.setState({ username: '', password: '', bio: '' })
+    this.props.registerUser(this.state.username, this.state.password, this.state.bio);
+    this.setState({ username: '', password: '', bio: '' });
   }
 
   render() {
@@ -34,9 +37,9 @@ class Register extends React.Component {
           error={this.props.failedLogin}
         >
       <Segment stacked>
-      
+
           <Message error header={this.props.failedLogin ? this.props.error : null} />
-         
+
             <Form.Input fluid
               icon='user'
               iconPosition='left'
@@ -62,24 +65,27 @@ class Register extends React.Component {
               onChange={this.handleChange}
               value={this.state.password}
             />
-     
+
           <Button color='orange' fluid size='large' type="submit">Register</Button>
-        
+
       </Segment>
       </Form>
       <p className='register'>Registred already? <Link to='/login'>  Login</Link></p>
       </Grid.Column>
   </Grid>
-    )
+    );
   }
 }
 
-const mapStateToProps = ({ usersReducer: { authenticatingUser, failedLogin, error, loggedIn } }) => ({
+const mapStateToProps = ({
+  usersReducer: {
+    authenticatingUser, failedLogin, error, loggedIn,
+  },
+}) => ({
   authenticatingUser,
   failedLogin,
   error,
-  loggedIn
-})
+  loggedIn,
+});
 
-
-export default connect(mapStateToProps, { registerUser })(Register)
+export default connect(mapStateToProps, { registerUser })(Register);

@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react'
-import { Header, Image } from 'semantic-ui-react'
+import React, { Fragment } from 'react';
+import { Header, Image } from 'semantic-ui-react';
 
 const NotFound = () => (
   <Fragment>
 
-    <div class="ui centered grid">
+    <div className="ui centered grid">
     <Image verticalAlign='center' src="https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg" />
     </div>
   </Fragment>
-)
+);
 
-export default NotFound
+export default NotFound;

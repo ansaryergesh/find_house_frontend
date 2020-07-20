@@ -1,64 +1,65 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Card, Image ,Button, Icon, Divider, Header,Comment, Form,} from 'semantic-ui-react'
-import { Loading} from './Loader';
+import React from 'react';
+import {
+  Card, Image, Button, Icon, Divider, Header, Comment, Form,
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Loading } from './Loader';
 
-const HomeDetail = props => {
+const HomeDetail = (props) => {
   const handleRemove = (e, homeId) => {
     e.preventDefault();
     props.deleteFavourite(homeId);
-    props.isFavoure(homeId)
-  }
+    props.isFavoure(homeId);
+  };
 
   const handleClick = (e, homeId) => {
     e.preventDefault();
     props.postFavourite(homeId);
-    props.isFavoure(homeId)
+    props.isFavoure(homeId);
   };
 
   function Buttons(value) {
-    if(props.favourites.favourites.some(elem=> elem.id === value)) {
+    if (props.favourites.favourites.some((elem) => elem.id === value)) {
       return (
         <div>
-          <Button  onClick={e=> handleRemove(e, value)} icon >
-            <Icon color='red' name='heart'/> 
+          <Button onClick={(e) => handleRemove(e, value)} icon >
+            <Icon color='red' name='heart'/>
           </Button>
         </div>
-      )
+      );
     }
-      return (
+    return (
         <div>
-          <Button  onClick={e=> handleClick(e, value)} icon>
-          <Icon color='black' name='heart'/> 
+          <Button onClick={(e) => handleClick(e, value)} icon>
+          <Icon color='black' name='heart'/>
         </Button>
         </div>
-      )
+    );
   }
 
-    if (props.isLoading) {
-      return (
+  if (props.isLoading) {
+    return (
         <div className="container">
           <div className="row">
             <Loading />
           </div>
         </div>
-      );
-    }
-    if (props.errMess) {
-      return (
+    );
+  }
+  if (props.errMess) {
+    return (
         <div className="container">
           <div className="row">
             <h4>{props.errMess}</h4>
           </div>
         </div>
-      );
-    }
-    else if (props.house) {
-      return (
+    );
+  }
+  if (props.house) {
+    return (
         <div className="container">
             <div className="col-12">
-            <Link to={`/home`}>
+            <Link to={'/home'}>
             <Button color = 'orange' className='container backButton' icon><Icon name='angle left' />Back</Button>
             </Link>
               <br></br>  <br></br>  <br></br>
@@ -74,7 +75,7 @@ const HomeDetail = props => {
             </Divider>
             <Card className='ui fluid card'>
                 {/* <h2>{home.name}</h2> */}
-                
+
                     <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
                     <Card.Content>
                     <Card.Header>{props.house.name}</Card.Header>
@@ -90,17 +91,12 @@ const HomeDetail = props => {
                     }
                     </Card.Content>
 
-                  
-                    
-                    <Button  color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
+                    <Button color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
             </Card>
             <br></br>
 
       </div>
-  
 
-
-              
             <Comment.Group className='container'>
               <Header as='h3' dividing>
                 Comments
@@ -167,19 +163,19 @@ const HomeDetail = props => {
 
           <Form reply>
             <Form.TextArea />
-            <Button color = 'orange' content='Add Reply' labelPosition='left' icon='edit'  />
+            <Button color = 'orange' content='Add Reply' labelPosition='left' icon='edit' />
           </Form>
         </Comment.Group>
         <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>
             </div>
           </div>
         </div>
-      );
-    }
-  
-    return (
-      <div />
     );
-  };
-  
-  export default HomeDetail;
+  }
+
+  return (
+      <div />
+  );
+};
+
+export default HomeDetail;

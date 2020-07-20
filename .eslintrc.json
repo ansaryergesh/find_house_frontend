@@ -12,7 +12,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "extends": ["airbnb", "plugin:react/recommended"],
+  "extends": ["airbnb-base", "plugin:react/recommended"],
   "plugins": ["react"],
   "rules": {
     "react/jsx-filename-extension": [

@@ -1,63 +1,66 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  Button, Form, Segment, Message,
+} from 'semantic-ui-react';
 import withAuth from '../hocs/withAuth';
-import { Redirect } from 'react-router'
-import { connect } from 'react-redux'
-import { Button, Form, Segment, Message,} from 'semantic-ui-react'
 // import {Form,Input} from 'semantic-ui-react-form-validator'
-import { postHouse,emptyMessage } from '../actions/houses'
+import { postHouse, emptyMessage } from '../actions/houses';
 
 const required = (val) => val && val.length;
 
 const mapStateToProps = (state) => ({
-    message: state.message || []
-})
+  message: state.message || [],
+});
 
-  
-const mapDispacthToProps = dispatch => ({
+const mapDispacthToProps = (dispatch) => ({
 });
 class AddHouse extends Component {
-    state = { name: '', descripton: '', price: '', redirectTo: false, visible: true}
+    state = {
+      name: '', descripton: '', price: '', redirectTo: false, visible: true,
+    }
+
     handleChange = (e, semanticInputData) => {
-        e.preventDefault();
-        this.setState({ [semanticInputData.name]: semanticInputData.value })
+      e.preventDefault();
+      this.setState({ [semanticInputData.name]: semanticInputData.value });
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()//semantic forms preventDefault for you
-        this.props.postHouse(this.state.name, this.state.descripton, this.state.price)
-        // console.log(this.state.name, this.state.descripton, this.state.price)
-        this.setState({ name: '', descripton: '', price: '', redirectTo: true, visible: false }) //reset form to initial state
+      e.preventDefault();// semantic forms preventDefault for you
+      this.props.postHouse(this.state.name, this.state.descripton, this.state.price);
+      // console.log(this.state.name, this.state.descripton, this.state.price)
+      this.setState({
+        name: '', descripton: '', price: '', redirectTo: true, visible: false,
+      }); // reset form to initial state
     }
 
-    
     handleDismiss = () => {
-        this.setState({ visible: false })
-        this.props.emptyMessage();
-
+      this.setState({ visible: false });
+      this.props.emptyMessage();
     }
 
     handleMessage = () => {
-        this.setState({visible: true})
+      this.setState({ visible: true });
     }
-    
+
     render() {
-        return (
+      return (
             <div>
                 <h1>Add House</h1>
-                {this.props.message.error !==null && this.state.visible == true ?
-                <Message className='container'
+                {this.props.message.error !== null && this.state.visible == true
+                  ? <Message className='container'
                 error
                     onDismiss={this.handleDismiss}
                     header={this.props.message.error}
                 />
-                : null }
-                {this.props.message.error ===null && this.props.message.success !== null && this.state.visible == true ?
-                <Message className='container'
+                  : null }
+                {this.props.message.error === null && this.props.message.success !== null && this.state.visible == true
+                  ? <Message className='container'
                 success
                     onDismiss={this.handleDismiss}
                     header={this.props.message.success}
                 />
-                : null }
+                  : null }
                 <Segment className='container'>
                     <Form
                     onSubmit={this.handleSubmit}
@@ -74,8 +77,8 @@ class AddHouse extends Component {
                         name="name"
                         onChange={this.handleChange}
                         value={this.state.name}
-                        validators={['required']} 
-                        errorMessages={['this field is required']} 
+                        validators={['required']}
+                        errorMessages={['this field is required']}
                         />
                         <Form.Input
                         icon= 'clipboard'
@@ -102,8 +105,8 @@ class AddHouse extends Component {
                     </Form>
                 </Segment>
             </div>
-        )
+      );
     }
 }
 
-export default withAuth(connect(mapStateToProps, { postHouse,emptyMessage })(AddHouse))
+export default withAuth(connect(mapStateToProps, { postHouse, emptyMessage })(AddHouse));

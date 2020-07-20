@@ -1,21 +1,23 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux'
-import { withRouter, Redirect } from 'react-router'
-import { loginUser } from '../actions/user'
-import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
+import { withRouter, Redirect } from 'react-router';
+import {
+  Button, Form, Grid, Header, Image, Message, Segment,
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../actions/user';
+
 class LoginForm extends React.Component {
   state = { username: '', password: '' }
 
-
   handleChange = (e, semanticInputData) => {
-    this.setState({ [semanticInputData.name]: semanticInputData.value })
+    this.setState({ [semanticInputData.name]: semanticInputData.value });
   }
 
-  handleLoginSubmit = () => { 
-    this.props.loginUser(this.state.username, this.state.password)
-    this.setState({ username: '', password: '' }) 
+  handleLoginSubmit = () => {
+    this.props.loginUser(this.state.username, this.state.password);
+    this.setState({ username: '', password: '' });
   }
 
   render() {
@@ -28,7 +30,7 @@ class LoginForm extends React.Component {
       <Header as='h2' color='orange' textAlign='center'>
           Sign In
       </Header>
-      <p style={{letterSpacing: '.95px'}}> Hello There. <br></br>Sign In and start managing your system</p>
+      <p style={{ letterSpacing: '.95px' }}> Hello There. <br></br>Sign In and start managing your system</p>
       <Form size='large'
           onSubmit={this.handleLoginSubmit}
           size="mini"
@@ -37,9 +39,9 @@ class LoginForm extends React.Component {
           error={this.props.failedLogin}
         >
       <Segment stacked>
-      
+
           <Message error header={this.props.failedLogin ? this.props.error : null} />
-         
+
             <Form.Input fluid
               icon='user'
               iconPosition='left'
@@ -57,23 +59,27 @@ class LoginForm extends React.Component {
               onChange={this.handleChange}
               value={this.state.password}
             />
-     
+
           <Button color='orange' fluid size='large' type="submit">Login</Button>
-        
+
       </Segment>
       </Form>
       <p className='register'>Already have an account? <Link to='/registration'>  Register</Link></p>
       </Grid.Column>
   </Grid>
-    )
+    );
   }
 }
 
-const mapStateToProps = ({ usersReducer: { authenticatingUser, failedLogin, error, loggedIn } }) => ({
+const mapStateToProps = ({
+  usersReducer: {
+    authenticatingUser, failedLogin, error, loggedIn,
+  },
+}) => ({
   authenticatingUser,
   failedLogin,
   error,
-  loggedIn
-})
+  loggedIn,
+});
 
-export default connect(mapStateToProps, { loginUser })(LoginForm)
+export default connect(mapStateToProps, { loginUser })(LoginForm);

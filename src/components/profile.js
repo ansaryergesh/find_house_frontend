@@ -1,7 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Card, Image, Grid } from 'semantic-ui-react'
-import withAuth from '../hocs/withAuth'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Card, Image, Grid } from 'semantic-ui-react';
+import withAuth from '../hocs/withAuth';
 
 const Profile = ({ avatar, username, bio }) => (
   <Grid textAlign='center' verticalAlign='middle'>
@@ -14,12 +14,12 @@ const Profile = ({ avatar, username, bio }) => (
     </Card.Content>
   </Card>
   </Grid>
-)
+);
 
 const mapStateToProps = ({ usersReducer: { user: { avatar, username, bio } } }) => ({
   avatar,
   username,
-  bio
-})
+  bio,
+});
 
-export default withAuth(connect(mapStateToProps)(Profile))
+export default withAuth(connect(mapStateToProps)(Profile));
