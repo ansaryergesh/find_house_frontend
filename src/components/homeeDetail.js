@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Card, Image, Button, Icon, Divider, Header, Comment, Form,

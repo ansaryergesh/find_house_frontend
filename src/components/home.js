@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import React from 'react';
 import {
   Card, Icon, Image, Grid, Button, Message,
 } from 'semantic-ui-react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Loading } from './Loader';
-import withAuth from '../hocs/withAuth';
 import { fetchFavourites } from '../actions/favourite';
 
 const mapStateToProps = (props) => ({
@@ -66,7 +67,6 @@ const Home = (props) => {
     <div className='container ui one column stackable grid'>
         {sorted.map((house) => (
               <Grid.Column>
-                {/* <Segment> */}
                 <div key={house.id}>
                   <Card className='ui fluid card'>
 

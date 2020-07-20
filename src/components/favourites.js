@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Card, Icon, Image, Grid, Button,
@@ -29,7 +31,7 @@ const Favourites = (props) => {
     );
   }
   const lengthFav = props.favourites.favourites.length;
-  if (lengthFav == 0) {
+  if (lengthFav === 0) {
     return (
       <div>
         <h2 style={{ textAlign: 'center' }}>List of Favourites</h2>

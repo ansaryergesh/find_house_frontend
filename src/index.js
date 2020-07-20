@@ -1,19 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
-import {ConfigureStore} from './store/configureStore';
-import 'semantic-ui-css/semantic.min.css'
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ConfigureStore } from './store/configureStore';
+import 'semantic-ui-css/semantic.min.css';
 
-import App from './App'
+import App from './App';
 
-import registerServiceWorker from './registerServiceWorker'
+import registerServiceWorker from './registerServiceWorker';
 
-
-const store = ConfigureStore()
-console.log(`%c REDUX STORE`, 'color: purple', store.getState())
+const store = ConfigureStore();
 
 ReactDOM.render(
   <Provider store={store}>
@@ -21,6 +19,6 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('root')
-)
-registerServiceWorker()
+  document.getElementById('root'),
+);
+registerServiceWorker();

@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -7,14 +9,10 @@ import withAuth from '../hocs/withAuth';
 // import {Form,Input} from 'semantic-ui-react-form-validator'
 import { postHouse, emptyMessage } from '../actions/houses';
 
-const required = (val) => val && val.length;
-
 const mapStateToProps = (state) => ({
   message: state.message || [],
 });
 
-const mapDispacthToProps = (dispatch) => ({
-});
 class AddHouse extends Component {
     state = {
       name: '', descripton: '', price: '', redirectTo: false, visible: true,
@@ -26,12 +24,11 @@ class AddHouse extends Component {
     }
 
     handleSubmit = (e) => {
-      e.preventDefault();// semantic forms preventDefault for you
+      e.preventDefault();
       this.props.postHouse(this.state.name, this.state.descripton, this.state.price);
-      // console.log(this.state.name, this.state.descripton, this.state.price)
       this.setState({
         name: '', descripton: '', price: '', redirectTo: true, visible: false,
-      }); // reset form to initial state
+      });
     }
 
     handleDismiss = () => {
@@ -47,14 +44,14 @@ class AddHouse extends Component {
       return (
             <div>
                 <h1>Add House</h1>
-                {this.props.message.error !== null && this.state.visible == true
+                {this.props.message.error !== null && this.state.visible === true
                   ? <Message className='container'
                 error
                     onDismiss={this.handleDismiss}
                     header={this.props.message.error}
                 />
                   : null }
-                {this.props.message.error === null && this.props.message.success !== null && this.state.visible == true
+                {this.props.message.error === null && this.props.message.success !== null && this.state.visible === true
                   ? <Message className='container'
                 success
                     onDismiss={this.handleDismiss}

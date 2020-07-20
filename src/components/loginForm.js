@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux'
-import { withRouter, Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 import {
-  Button, Form, Grid, Header, Image, Message, Segment,
+  Button, Form, Grid, Header, Message, Segment,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../actions/user';

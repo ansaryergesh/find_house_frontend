@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Image, Grid } from 'semantic-ui-react';
 import withAuth from '../hocs/withAuth';
 
-const Profile = ({ avatar, username, bio }) => (
+const Profile = ({ username, bio }) => (
   <Grid textAlign='center' verticalAlign='middle'>
   <Card className='profilePage'>
     <Image src='https://semantic-ui.com/images/avatar2/large/matthew.png' />

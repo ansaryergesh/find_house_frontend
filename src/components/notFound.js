@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Header, Image } from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react';
 
 const NotFound = () => (
   <Fragment>
