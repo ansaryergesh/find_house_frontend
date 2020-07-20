@@ -7,13 +7,12 @@
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
+      "jsx": true
     },
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "extends": ["airbnb", "plugin:react/recommended", "airbnb-base"],
+  "extends": ["airbnb", "plugin:react/recommended"],
   "plugins": ["react"],
   "rules": {
     "react/jsx-filename-extension": [

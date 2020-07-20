@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
-import { Card, Icon, Image,Header, Grid, Segment,Button } from 'semantic-ui-react'
+import React from 'react';
+import { Card, Icon, Image, Grid,Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { Loading} from './Loader';
-import { connect } from 'react-redux'
-import withAuth from '../hocs/withAuth';
-// import AddFavourite from './favourAdd';
-import {postFavourite} from '../actions/favourite';
 
 const Favourites = props => {
   
@@ -50,7 +46,6 @@ const Favourites = props => {
     <div className='container ui one column stackable grid'>
         {props.favourites.favourites.map(favourite => (
               <Grid.Column>
-                {/* <Segment> */}
                 <div key={favourite.id}>
                   <Card className='ui fluid card'>
                     <Link to={`/home/${favourite.id}`}>
@@ -60,20 +55,13 @@ const Favourites = props => {
                       <Card.Header className="houseName">{favourite.name}</Card.Header>
                       <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(favourite.created_at)))}</Card.Meta>
                       <Card.Description>{favourite.price}</Card.Description>
-                      {/* <Button onClick={e=> handleClick(e, house.id)} icon>
-                        <Icon name='heart'/>
-                      </Button> */}
-                      
                       <Button  onClick={e=> handleRemove(e, favourite.id)} icon>
                         <Icon color='red' name='heart'/>
                       </Button>
                       </Card.Content>
                   </Card>
-          </div>
-                {/* </Segment> */}
+                </div>
               </Grid.Column>
-         
-         
         ))}
       </div>
       </div>
