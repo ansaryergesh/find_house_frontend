@@ -75,7 +75,7 @@ const Home = props => {
                   <Image width="100%" src='https://wallpapercave.com/wp/wp2124316.jpg' />
                 </Link>
 
-                  <Card.Content>
+                <Card.Content>
                   <Card.Header className="houseName">{house.name}</Card.Header>
                   <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(house.created_at)))}</Card.Meta>
                   <Card.Description>{house.price} $</Card.Description>
@@ -83,19 +83,19 @@ const Home = props => {
                   {props.message.success !== null
                     ? <Message className='container favoureMessage'
                       success
-                          header={props.message.success}
-                      />
+                      header={props.message.success}
+                    />
                     : null }
                   {
                     Buttons(house.id)
                   }
-                  </Card.Content>
+                </Card.Content>
               </Card>
-        </div>
+            </div>
           </Grid.Column>
         ))}
-        </div>
       </div>
+    </div>
   );
 };
 

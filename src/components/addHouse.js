@@ -52,56 +52,56 @@ class AddHouse extends Component {
               header={this.props.message.error}
             />
             : null }
-            {this.props.message.error === null && this.props.message.success !== null && this.state.visible === true
-              ? <Message className='container'
+          {this.props.message.error === null && this.props.message.success !== null && this.state.visible === true
+            ? <Message className='container'
               success
               onDismiss={this.handleDismiss}
               header={this.props.message.success}
             />
-              : null }
-            <Segment className='container'>
+            : null }
+          <Segment className='container'>
             <Form
               onSubmit={this.handleSubmit}
               size="mini"
               key="mini"
             >
               <Message error header={this.props.errMess} />
-                <Form.Group widths="equal">
-                  <Form.Input
-                    icon='building outline'
-                    iconPosition='left'
-                    label="name"
-                    placeholder="name"
-                    name="name"
-                    onChange={this.handleChange}
-                    value={this.state.name}
-                    validators={['required']}
-                    errorMessages={['this field is required']}
-                  />
-                  <Form.Input
-                    icon= 'clipboard'
-                    iconPosition='left'
-                    type="text"
-                    label="descripton"
-                    placeholder="descripton"
-                    name="descripton"
-                    onChange={this.handleChange}
-                    value={this.state.descripton}
-                  />
-                  <Form.Input
-                    icon='dollar sign'
-                    iconPosition='left'
-                    type='number'
-                    label="price"
-                    placeholder="price"
-                    name="price"
-                    onChange={this.handleChange}
-                    value={this.state.price}
-                    />
-                </Form.Group>
-                <Button type="submit">Post House</Button>
-                </Form>
-            </Segment>
+              <Form.Group widths="equal">
+                <Form.Input
+                  icon='building outline'
+                  iconPosition='left'
+                  label="name"
+                  placeholder="name"
+                  name="name"
+                  onChange={this.handleChange}
+                  value={this.state.name}
+                  validators={['required']}
+                  errorMessages={['this field is required']}
+                />
+                <Form.Input
+                  icon= 'clipboard'
+                  iconPosition='left'
+                  type="text"
+                  label="descripton"
+                  placeholder="descripton"
+                  name="descripton"
+                  onChange={this.handleChange}
+                  value={this.state.descripton}
+                />
+                <Form.Input
+                  icon='dollar sign'
+                  iconPosition='left'
+                  type='number'
+                  label="price"
+                  placeholder="price"
+                  name="price"
+                  onChange={this.handleChange}
+                  value={this.state.price}
+                />
+              </Form.Group>
+              <Button type="submit">Post House</Button>
+            </Form>
+          </Segment>
         </div>
       );
     }

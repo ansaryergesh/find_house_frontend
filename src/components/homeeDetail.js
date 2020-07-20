@@ -60,44 +60,42 @@ const HomeDetail = props => {
   if (props.house) {
     return (
       <div className="container">
-          <div className="col-12">
+        <div className="col-12">
           <Link to={'/home'}>
-          <Button color = 'orange' className='container backButton' icon><Icon name='angle left' />Back</Button>
+            <Button color = 'orange' className='container backButton' icon><Icon name='angle left' />Back</Button>
           </Link>
-            <br></br>  <br></br>  <br></br>
+          <br></br>  <br></br>  <br></br>
         </div>
         <div className="row">
           <div className="col-12">
-          <div className='container ui one column stackable grid'>
-          <Divider horizontal>
-            <Header as='h4'>
-              <Icon name='tag' />
-              {props.house.name}
-            </Header>
-          </Divider>
-          <Card className='ui fluid card'>
-              {/* <h2>{home.name}</h2> */}
+            <div className='container ui one column stackable grid'>
+              <Divider horizontal>
+                <Header as='h4'>
+                  <Icon name='tag' />
+                  {props.house.name}
+                </Header>
+              </Divider>
+              <Card className='ui fluid card'>
+                <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
+                <Card.Content>
+                <Card.Header>{props.house.name}</Card.Header>
+                <br></br>
+                <Card.Meta>Price: {props.house.price} $</Card.Meta>
+                <hr></hr>
+                <br></br>
+                <Card.Description>Description: {props.house.descripton}</Card.Description>
 
-                  <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
-                  <Card.Content>
-                  <Card.Header>{props.house.name}</Card.Header>
-                  <br></br>
-                  <Card.Meta>Price: {props.house.price} $</Card.Meta>
-                  <hr></hr>
-                  <br></br>
-                  <Card.Description>Description: {props.house.descripton}</Card.Description>
+                <br></br>
+                {
+                    Buttons(props.house.id)
+                }
+                </Card.Content>
 
-                  <br></br>
-                  {
-                      Buttons(props.house.id)
-                  }
-                  </Card.Content>
+                <Button color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
+              </Card>
+              <br></br>
 
-                  <Button color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
-          </Card>
-          <br></br>
-
-    </div>
+            </div>
 
             <Comment.Group className='container'>
               <Header as='h3' dividing>
@@ -163,11 +161,11 @@ const HomeDetail = props => {
                 </Comment.Content>
               </Comment>
 
-          <Form reply>
-            <Form.TextArea />
-            <Button color = 'orange' content='Add Reply' labelPosition='left' icon='edit' />
-          </Form>
-        </Comment.Group>
+              <Form reply>
+                <Form.TextArea />
+                <Button color = 'orange' content='Add Reply' labelPosition='left' icon='edit' />
+              </Form>
+            </Comment.Group>
             <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>
           </div>
         </div>
@@ -176,7 +174,7 @@ const HomeDetail = props => {
   }
 
   return (
-      <div />
+    <div />
   );
 };
 

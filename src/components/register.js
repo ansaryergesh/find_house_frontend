@@ -66,7 +66,7 @@ class Register extends React.Component {
                 value={this.state.password}
               />
 
-          <Button color='orange' fluid size='large' type="submit">Register</Button>
+              <Button color='orange' fluid size='large' type="submit">Register</Button>
 
             </Segment>
           </Form>

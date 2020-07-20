@@ -54,21 +54,21 @@ const Favourites = props => {
               <Card className='ui fluid card'>
                 <Link to={`/home/${favourite.id}`}>
                   <Image width="100%" src='https://wallpapercave.com/wp/wp2124316.jpg' />
-                  </Link>
-                  <Card.Content>
+                </Link>
+                <Card.Content>
                   <Card.Header className="houseName">{favourite.name}</Card.Header>
                   <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(favourite.created_at)))}</Card.Meta>
                   <Card.Description>{favourite.price}</Card.Description>
                   <Button onClick={e => handleRemove(e, favourite.id)} icon>
                     <Icon color='red' name='heart'/>
                   </Button>
-                  </Card.Content>
+                </Card.Content>
               </Card>
             </div>
           </Grid.Column>
         ))}
       </div>
-      </div>
+    </div>
 
   );
 };
