@@ -44,30 +44,30 @@ class AddHouse extends Component {
     render() {
       return (
         <div>
-            <h1>Add House</h1>
-            {this.props.message.error !== null && this.state.visible === true
-              ? <Message className='container'
-            error
-                onDismiss={this.handleDismiss}
-                header={this.props.message.error}
+          <h1>Add House</h1>
+          {this.props.message.error !== null && this.state.visible === true
+            ? <Message className='container'
+              error
+              onDismiss={this.handleDismiss}
+              header={this.props.message.error}
             />
-              : null }
+            : null }
             {this.props.message.error === null && this.props.message.success !== null && this.state.visible === true
               ? <Message className='container'
-            success
-                onDismiss={this.handleDismiss}
-                header={this.props.message.success}
+              success
+              onDismiss={this.handleDismiss}
+              header={this.props.message.success}
             />
               : null }
             <Segment className='container'>
-                <Form
-                onSubmit={this.handleSubmit}
-                size="mini"
-                key="mini"
-                >
-                <Message error header={this.props.errMess} />
+            <Form
+              onSubmit={this.handleSubmit}
+              size="mini"
+              key="mini"
+            >
+              <Message error header={this.props.errMess} />
                 <Form.Group widths="equal">
-                    <Form.Input
+                  <Form.Input
                     icon='building outline'
                     iconPosition='left'
                     label="name"
@@ -77,8 +77,8 @@ class AddHouse extends Component {
                     value={this.state.name}
                     validators={['required']}
                     errorMessages={['this field is required']}
-                    />
-                    <Form.Input
+                  />
+                  <Form.Input
                     icon= 'clipboard'
                     iconPosition='left'
                     type="text"
@@ -87,9 +87,9 @@ class AddHouse extends Component {
                     name="descripton"
                     onChange={this.handleChange}
                     value={this.state.descripton}
-                    />
-                      <Form.Input
-                      icon='dollar sign'
+                  />
+                  <Form.Input
+                    icon='dollar sign'
                     iconPosition='left'
                     type='number'
                     label="price"
