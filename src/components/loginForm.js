@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
       <Redirect to="/profile" />
     ) : (
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 500 }}>
+        <Grid.Column style={{ maxWidth: 500 }}>
 
           <Header as='h2' color='orange' textAlign='center'>
               Sign In
@@ -43,24 +43,24 @@ class LoginForm extends React.Component {
           >
             <Segment stacked>
               <Message error header={this.props.failedLogin ? this.props.error : null} />
-                <Form.Input fluid
-                  icon='user'
-                  iconPosition='left'
-                  placeholder="username"
-                  name="username"
-                  onChange={this.handleChange}
-                  value={this.state.username}
-                />
-                <Form.Input
-                  icon='lock'
-                  iconPosition='left'
-                  type="password"
-                  placeholder="password"
-                  name="password"
-                  onChange={this.handleChange}
-                  value={this.state.password}
-                />
-                <Button color='orange' fluid size='large' type="submit">Login</Button>
+              <Form.Input fluid
+                icon='user'
+                iconPosition='left'
+                placeholder="username"
+                name="username"
+                onChange={this.handleChange}
+                value={this.state.username}
+              />
+              <Form.Input
+                icon='lock'
+                iconPosition='left'
+                type="password"
+                placeholder="password"
+                name="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
+              <Button color='orange' fluid size='large' type="submit">Login</Button>
             </Segment>
           </Form>
           <p className='register'>Already have an account? <Link to='/registration'>  Register</Link></p>

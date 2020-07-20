@@ -78,17 +78,17 @@ const HomeDetail = props => {
               <Card className='ui fluid card'>
                 <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
                 <Card.Content>
-                <Card.Header>{props.house.name}</Card.Header>
-                <br></br>
-                <Card.Meta>Price: {props.house.price} $</Card.Meta>
-                <hr></hr>
-                <br></br>
-                <Card.Description>Description: {props.house.descripton}</Card.Description>
+                  <Card.Header>{props.house.name}</Card.Header>
+                  <br></br>
+                  <Card.Meta>Price: {props.house.price} $</Card.Meta>
+                  <hr></hr>
+                  <br></br>
+                  <Card.Description>Description: {props.house.descripton}</Card.Description>
 
-                <br></br>
-                {
+                  <br></br>
+                  {
                     Buttons(props.house.id)
-                }
+                  }
                 </Card.Content>
 
                 <Button color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
