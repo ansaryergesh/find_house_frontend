@@ -31,73 +31,73 @@ const HomeDetail = props => {
       );
     }
     return (
-        <div>
-          <Button onClick={e => handleClick(e, value)} icon>
+      <div>
+        <Button onClick={e => handleClick(e, value)} icon>
           <Icon color='black' name='heart'/>
         </Button>
-        </div>
+      </div>
     );
   }
 
   if (props.isLoading) {
     return (
-        <div className="container">
-          <div className="row">
-            <Loading />
-          </div>
+      <div className="container">
+        <div className="row">
+          <Loading />
         </div>
+      </div>
     );
   }
   if (props.errMess) {
     return (
-        <div className="container">
-          <div className="row">
-            <h4>{props.errMess}</h4>
-          </div>
+      <div className="container">
+        <div className="row">
+          <h4>{props.errMess}</h4>
         </div>
+      </div>
     );
   }
   if (props.house) {
     return (
-        <div className="container">
-            <div className="col-12">
-            <Link to={'/home'}>
-            <Button color = 'orange' className='container backButton' icon><Icon name='angle left' />Back</Button>
-            </Link>
-              <br></br>  <br></br>  <br></br>
-          </div>
-          <div className="row">
-            <div className="col-12">
-            <div className='container ui one column stackable grid'>
-            <Divider horizontal>
-              <Header as='h4'>
-                <Icon name='tag' />
-                {props.house.name}
-              </Header>
-            </Divider>
-            <Card className='ui fluid card'>
-                {/* <h2>{home.name}</h2> */}
+      <div className="container">
+          <div className="col-12">
+          <Link to={'/home'}>
+          <Button color = 'orange' className='container backButton' icon><Icon name='angle left' />Back</Button>
+          </Link>
+            <br></br>  <br></br>  <br></br>
+        </div>
+        <div className="row">
+          <div className="col-12">
+          <div className='container ui one column stackable grid'>
+          <Divider horizontal>
+            <Header as='h4'>
+              <Icon name='tag' />
+              {props.house.name}
+            </Header>
+          </Divider>
+          <Card className='ui fluid card'>
+              {/* <h2>{home.name}</h2> */}
 
-                    <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
-                    <Card.Content>
-                    <Card.Header>{props.house.name}</Card.Header>
-                    <br></br>
-                    <Card.Meta>Price: {props.house.price} $</Card.Meta>
-                    <hr></hr>
-                    <br></br>
-                    <Card.Description>Description: {props.house.descripton}</Card.Description>
+                  <Image src='https://wallpapercave.com/wp/wp2124316.jpg' />
+                  <Card.Content>
+                  <Card.Header>{props.house.name}</Card.Header>
+                  <br></br>
+                  <Card.Meta>Price: {props.house.price} $</Card.Meta>
+                  <hr></hr>
+                  <br></br>
+                  <Card.Description>Description: {props.house.descripton}</Card.Description>
 
-                    <br></br>
-                    {
-                        Buttons(props.house.id)
-                    }
-                    </Card.Content>
+                  <br></br>
+                  {
+                      Buttons(props.house.id)
+                  }
+                  </Card.Content>
 
-                    <Button color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
-            </Card>
-            <br></br>
+                  <Button color = 'orange'className='container' icon><Icon name='' />Apply to Rent</Button>
+          </Card>
+          <br></br>
 
-      </div>
+    </div>
 
             <Comment.Group className='container'>
               <Header as='h3' dividing>
@@ -168,10 +168,10 @@ const HomeDetail = props => {
             <Button color = 'orange' content='Add Reply' labelPosition='left' icon='edit' />
           </Form>
         </Comment.Group>
-        <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>
-            </div>
+            <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>  <br></br>
           </div>
         </div>
+      </div>
     );
   }
 

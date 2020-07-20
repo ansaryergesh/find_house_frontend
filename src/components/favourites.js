@@ -47,25 +47,25 @@ const Favourites = props => {
   return (
     <div>
       <h2 style={{ textAlign: 'center' }}>List of Favourites</h2>
-    <div className='container ui one column stackable grid'>
+      <div className='container ui one column stackable grid'>
         {props.favourites.favourites.map(favourite => (
-              <Grid.Column>
-                <div key={favourite.id}>
-                  <Card className='ui fluid card'>
-                    <Link to={`/home/${favourite.id}`}>
-                      <Image width="100%" src='https://wallpapercave.com/wp/wp2124316.jpg' />
-                      </Link>
-                      <Card.Content>
-                      <Card.Header className="houseName">{favourite.name}</Card.Header>
-                      <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(favourite.created_at)))}</Card.Meta>
-                      <Card.Description>{favourite.price}</Card.Description>
-                      <Button onClick={e => handleRemove(e, favourite.id)} icon>
-                        <Icon color='red' name='heart'/>
-                      </Button>
-                      </Card.Content>
-                  </Card>
-                </div>
-              </Grid.Column>
+          <Grid.Column>
+            <div key={favourite.id}>
+              <Card className='ui fluid card'>
+                <Link to={`/home/${favourite.id}`}>
+                  <Image width="100%" src='https://wallpapercave.com/wp/wp2124316.jpg' />
+                  </Link>
+                  <Card.Content>
+                  <Card.Header className="houseName">{favourite.name}</Card.Header>
+                  <Card.Meta>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(favourite.created_at)))}</Card.Meta>
+                  <Card.Description>{favourite.price}</Card.Description>
+                  <Button onClick={e => handleRemove(e, favourite.id)} icon>
+                    <Icon color='red' name='heart'/>
+                  </Button>
+                  </Card.Content>
+              </Card>
+            </div>
+          </Grid.Column>
         ))}
       </div>
       </div>

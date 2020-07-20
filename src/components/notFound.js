@@ -6,7 +6,7 @@ const NotFound = () => (
   <Fragment>
 
     <div className="ui centered grid">
-    <Image verticalAlign='center' src="https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg" />
+      <Image verticalAlign='center' src="https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg" />
     </div>
   </Fragment>
 );

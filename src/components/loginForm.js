@@ -34,42 +34,38 @@ class LoginForm extends React.Component {
           Sign In
       </Header>
       <p style={{ letterSpacing: '.95px' }}> Hello There. <br></br>Sign In and start managing your system</p>
-      <Form size='large'
-          onSubmit={this.handleLoginSubmit}
-          size="mini"
-          key="mini"
-          loading={this.props.authenticatingUser}
-          error={this.props.failedLogin}
-        >
-      <Segment stacked>
-
-          <Message error header={this.props.failedLogin ? this.props.error : null} />
-
-            <Form.Input fluid
-              icon='user'
-              iconPosition='left'
-              placeholder="username"
-              name="username"
-              onChange={this.handleChange}
-              value={this.state.username}
-            />
-            <Form.Input
-              icon='lock'
-              iconPosition='left'
-              type="password"
-              placeholder="password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-
-          <Button color='orange' fluid size='large' type="submit">Login</Button>
-
-      </Segment>
-      </Form>
-      <p className='register'>Already have an account? <Link to='/registration'>  Register</Link></p>
-      </Grid.Column>
-  </Grid>
+            <Form size='large'
+              onSubmit={this.handleLoginSubmit}
+              size="mini"
+              key="mini"
+              loading={this.props.authenticatingUser}
+              error={this.props.failedLogin}
+            >
+              <Segment stacked>
+                <Message error header={this.props.failedLogin ? this.props.error : null} />
+                  <Form.Input fluid
+                    icon='user'
+                    iconPosition='left'
+                    placeholder="username"
+                    name="username"
+                    onChange={this.handleChange}
+                    value={this.state.username}
+                  />
+                  <Form.Input
+                    icon='lock'
+                    iconPosition='left'
+                    type="password"
+                    placeholder="password"
+                    name="password"
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                  />
+                  <Button color='orange' fluid size='large' type="submit">Login</Button>
+              </Segment>
+            </Form>
+            <p className='register'>Already have an account? <Link to='/registration'>  Register</Link></p>
+        </Grid.Column>
+      </Grid>
     );
   }
 }

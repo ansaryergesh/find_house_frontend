@@ -26,56 +26,53 @@ class Register extends React.Component {
     return this.props.loggedIn ? (
       <Redirect to="/profile" />
     ) : (
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 500 }}>
-
-      <Header as='h2' color='orange' textAlign='center'>
-          Registration
-      </Header>
-      <Form size='large'
-          onSubmit={this.handleLoginSubmit}
-          size="mini"
-          key="mini"
-          loading={this.props.authenticatingUser}
-          error={this.props.failedLogin}
-        >
-      <Segment stacked>
-
-          <Message error header={this.props.failedLogin ? this.props.error : null} />
-
-            <Form.Input fluid
-              icon='user'
-              iconPosition='left'
-              placeholder="username"
-              name="username"
-              onChange={this.handleChange}
-              value={this.state.username}
-            />
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid.Column style={{ maxWidth: 500 }}>
+          <Header as='h2' color='orange' textAlign='center'>
+              Registration
+          </Header>
+          <Form size='large'
+              onSubmit={this.handleLoginSubmit}
+              size="mini"
+              key="mini"
+              loading={this.props.authenticatingUser}
+              error={this.props.failedLogin}
+            >
+            <Segment stacked>
+              <Message error header={this.props.failedLogin ? this.props.error : null} />
+              <Form.Input fluid
+                icon='user'
+                iconPosition='left'
+                placeholder="username"
+                name="username"
+                onChange={this.handleChange}
+                value={this.state.username}
+              />
+                <Form.Input
+                icon='book'
+                iconPosition='left'
+                placeholder="Bio"
+                name="bio"
+                onChange={this.handleChange}
+                value={this.state.bio}
+              />
               <Form.Input
-              icon='book'
-              iconPosition='left'
-              placeholder="Bio"
-              name="bio"
-              onChange={this.handleChange}
-              value={this.state.bio}
-            />
-            <Form.Input
-              icon='lock'
-              iconPosition='left'
-              type="password"
-              placeholder="password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
+                icon='lock'
+                iconPosition='left'
+                type="password"
+                placeholder="password"
+                name="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
 
           <Button color='orange' fluid size='large' type="submit">Register</Button>
 
-      </Segment>
-      </Form>
-      <p className='register'>Registred already? <Link to='/login'>  Login</Link></p>
-      </Grid.Column>
-  </Grid>
+        </Segment>
+        </Form>
+        <p className='register'>Registred already? <Link to='/login'>  Login</Link></p>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
