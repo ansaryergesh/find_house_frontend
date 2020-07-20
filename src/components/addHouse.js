@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
+/* eslint arrow-parens: [2, "as-needed"] */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -9,7 +10,7 @@ import withAuth from '../hocs/withAuth';
 // import {Form,Input} from 'semantic-ui-react-form-validator'
 import { postHouse, emptyMessage } from '../actions/houses';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   message: state.message || [],
 });
 
@@ -23,7 +24,7 @@ class AddHouse extends Component {
       this.setState({ [semanticInputData.name]: semanticInputData.value });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
       e.preventDefault();
       this.props.postHouse(this.state.name, this.state.descripton, this.state.price);
       this.setState({

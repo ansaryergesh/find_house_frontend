@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react/prop-types */
+/* eslint arrow-parens: [2, "as-needed"] */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';

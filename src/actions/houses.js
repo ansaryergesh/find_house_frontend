@@ -1,38 +1,40 @@
+/* eslint arrow-parens: [2, "as-needed"] */
+
 export const houseLoading = () => ({
   type: 'HOUSES_LOADING',
 });
 
-export const housesFailed = (errmess) => ({
+export const housesFailed = errmess => ({
   type: 'HOUSES_FAILED',
   payload: errmess,
 });
-export const postHouseSuccess = (house) => ({
+export const postHouseSuccess = house => ({
   type: 'POST_HOUSE_SUCCESS',
   payload: house,
 });
-export const housesPostFailed = (errmess) => ({
+export const housesPostFailed = errmess => ({
   type: 'ERROR_MESSAGE',
   payload: errmess,
 });
 
-export const successMessage = (message) => ({
+export const successMessage = message => ({
   type: 'SUCCESS_MESSAGE',
   payload: message,
 });
 
-export const houseSuccess = (house) => ({
+export const houseSuccess = house => ({
   type: 'HOUSE_SUCCESS',
   payload: house,
 });
 export const emptyMessage = () => ({
   type: 'EMPTY_MESSAGE',
 });
-export const singleHouse = (singleHouse) => ({
+export const singleHouse = singleHouse => ({
   type: 'SINGLE_HOUSE',
   payload: singleHouse,
 });
 
-export const postHouse = (name, descripton, price) => (dispatch) => {
+export const postHouse = (name, descripton, price) => dispatch => {
   dispatch({ type: 'HOUSE_POST_LOADING' });
   fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`, {
     method: 'POST',
@@ -47,21 +49,21 @@ export const postHouse = (name, descripton, price) => (dispatch) => {
       price,
     }),
   })
-    .then((response) => {
+    .then(response => {
       if (response.ok) {
         return response;
       }
       throw response;
     })
-    .then((response) => response.json())
-    .then((response) => dispatch(postHouseSuccess(response)))
+    .then(response => response.json())
+    .then(response => dispatch(postHouseSuccess(response)))
     .then(setTimeout(() => {
       dispatch(emptyMessage());
     }, 3000))
-    .catch((response) => response.json().then(() => dispatch(housesPostFailed('Please fill all the form'))));
+    .catch(response => response.json().then(() => dispatch(housesPostFailed('Please fill all the form'))));
 };
 
-export const fetchHouses = () => (dispatch) => {
+export const fetchHouses = () => dispatch => {
   dispatch(houseLoading(true));
   return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes`, {
     headers: {
@@ -70,7 +72,7 @@ export const fetchHouses = () => (dispatch) => {
       Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
   })
-    .then((response) => {
+    .then(response => {
       if (response.ok) {
         return response;
       }
@@ -79,16 +81,16 @@ export const fetchHouses = () => (dispatch) => {
       error.response = response;
       throw error;
     },
-    (error) => {
+    error => {
       const errmess = new Error(error.message);
       throw errmess;
     })
-    .then((response) => response.json())
-    .then((homes) => dispatch(postHouseSuccess(homes)))
-    .catch((error) => dispatch(housesFailed(error.message)));
+    .then(response => response.json())
+    .then(homes => dispatch(postHouseSuccess(homes)))
+    .catch(error => dispatch(housesFailed(error.message)));
 };
 
-export const fetchHouse = (houseId) => (dispatch) => {
+export const fetchHouse = houseId => dispatch => {
   dispatch(houseLoading(true));
   return fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/homes/${houseId}`, {
     headers: {
@@ -97,7 +99,7 @@ export const fetchHouse = (houseId) => (dispatch) => {
       Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
   })
-    .then((response) => {
+    .then(response => {
       if (response.ok) {
         return response;
       }
@@ -106,11 +108,11 @@ export const fetchHouse = (houseId) => (dispatch) => {
       error.response = response;
       throw error;
     },
-    (error) => {
+    error => {
       const errmess = new Error(error.message);
       throw errmess;
     })
-    .then((response) => response.json())
-    .then((homes) => dispatch(postHouseSuccess(homes)))
-    .catch((error) => dispatch(housesFailed(error.message)));
+    .then(response => response.json())
+    .then(homes => dispatch(postHouseSuccess(homes)))
+    .catch(error => dispatch(housesFailed(error.message)));
 };

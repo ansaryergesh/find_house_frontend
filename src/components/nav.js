@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
+/* eslint arrow-parens: [2, "as-needed"] */
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { Menu, Icon } from 'semantic-ui-react';
 
 const Nav = ({ user: { loggedIn }, location: { pathname } }) => {
-  const handleClick = (event) => {
+  const handleClick = event => {
     event.preventDefault();
     localStorage.removeItem('jwt');
     window.location.reload(false);

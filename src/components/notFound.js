@@ -1,3 +1,4 @@
+/* eslint arrow-parens: [2, "as-needed"] */
 import React, { Fragment } from 'react';
 import { Image } from 'semantic-ui-react';
 

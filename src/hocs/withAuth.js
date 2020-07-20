@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint arrow-parens: [2, "as-needed"] */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
@@ -6,7 +7,7 @@ import { Redirect } from 'react-router';
 import { Loader } from 'semantic-ui-react';
 import * as actions from '../actions';
 
-const withAuth = (WrappedComponent) => {
+const withAuth = WrappedComponent => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
       if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser();
@@ -22,12 +23,12 @@ const withAuth = (WrappedComponent) => {
     }
   }
 
-  const mapStateToProps = (reduxStoreState) => ({
+  const mapStateToProps = reduxStoreState => ({
     loggedIn: reduxStoreState.usersReducer.loggedIn,
     authenticatingUser: reduxStoreState.usersReducer.authenticatingUser,
   });
 
-  const mapDispatchToProps = (dispatch) => ({
+  const mapDispatchToProps = dispatch => ({
     fetchCurrentUser: () => dispatch(actions.fetchCurrentUser()),
   });
 

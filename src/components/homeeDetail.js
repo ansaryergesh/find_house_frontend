@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint arrow-parens: [2, "as-needed"] */
 import React from 'react';
 import {
   Card, Image, Button, Icon, Divider, Header, Comment, Form,
@@ -6,7 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Loading } from './Loader';
 
-const HomeDetail = (props) => {
+const HomeDetail = props => {
   const handleRemove = (e, homeId) => {
     e.preventDefault();
     props.deleteFavourite(homeId);
@@ -20,10 +21,10 @@ const HomeDetail = (props) => {
   };
 
   function Buttons(value) {
-    if (props.favourites.favourites.some((elem) => elem.id === value)) {
+    if (props.favourites.favourites.some(elem => elem.id === value)) {
       return (
         <div>
-          <Button onClick={(e) => handleRemove(e, value)} icon >
+          <Button onClick={e => handleRemove(e, value)} icon >
             <Icon color='red' name='heart'/>
           </Button>
         </div>
@@ -31,7 +32,7 @@ const HomeDetail = (props) => {
     }
     return (
         <div>
-          <Button onClick={(e) => handleClick(e, value)} icon>
+          <Button onClick={e => handleClick(e, value)} icon>
           <Icon color='black' name='heart'/>
         </Button>
         </div>

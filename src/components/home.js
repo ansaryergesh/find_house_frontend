@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
+/* eslint arrow-parens: [2, "as-needed"] */
 import React from 'react';
 import {
   Card, Icon, Image, Grid, Button, Message,
@@ -9,10 +10,10 @@ import { connect } from 'react-redux';
 import { Loading } from './Loader';
 import { fetchFavourites } from '../actions/favourite';
 
-const mapStateToProps = (props) => ({
+const mapStateToProps = props => ({
   favourites: props.favourites,
 });
-const Home = (props) => {
+const Home = props => {
   const handleClick = (e, homeId) => {
     e.preventDefault();
     props.postFavourite(homeId);
@@ -24,10 +25,10 @@ const Home = (props) => {
   };
 
   function Buttons(value) {
-    if (props.favourites.favourites.some((elem) => elem.id === value)) {
+    if (props.favourites.favourites.some(elem => elem.id === value)) {
       return (
         <div>
-          <Button onClick={(e) => handleRemove(e, value)} icon>
+          <Button onClick={e => handleRemove(e, value)} icon>
          <Icon color='red' name='heart'/>
        </Button>
         </div>
@@ -35,7 +36,7 @@ const Home = (props) => {
     }
     return (
         <div>
-          <Button onClick={(e) => handleClick(e, value)} icon>
+          <Button onClick={e => handleClick(e, value)} icon>
           <Icon color='black' name='heart'/>
         </Button>
         </div>
@@ -65,7 +66,7 @@ const Home = (props) => {
       <h2 style={{ textAlign: 'center' }}>List of Houses</h2>
 
     <div className='container ui one column stackable grid'>
-        {sorted.map((house) => (
+        {sorted.map(house => (
               <Grid.Column>
                 <div key={house.id}>
                   <Card className='ui fluid card'>
