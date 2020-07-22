@@ -2,6 +2,25 @@
   text-align: center;
 }
 
+h1 {
+  text-align: center;
+}
+
+h1,
+h2,
+.profilePage,
+.backButton {
+  margin-top: 105px !important;
+}
+
+.register {
+  letter-spacing: .8px;
+}
+
+.navigationBar {
+  background-color: white !important;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -23,6 +42,11 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

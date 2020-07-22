@@ -1,13 +1,14 @@
-import React, { Fragment } from 'react'
-import { Header, Image } from 'semantic-ui-react'
+/* eslint arrow-parens: [2, "as-needed"] */
+import React, { Fragment } from 'react';
+import { Image } from 'semantic-ui-react';
 
 const NotFound = () => (
   <Fragment>
-    <Header size="huge" inverted color="purple">
-      Page Not Found lol
-    </Header>
-    <Image src="https://thumbs.dreamstime.com/z/senior-man-shrugging-his-shoulders-8775727.jpg" />
-  </Fragment>
-)
 
-export default NotFound
+    <div className="ui centered grid">
+      <Image verticalAlign='center' src="https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg" />
+    </div>
+  </Fragment>
+);
+
+export default NotFound;

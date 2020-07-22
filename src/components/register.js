@@ -3,24 +3,23 @@
 /* eslint arrow-parens: [2, "as-needed"] */
 import React from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux'
 import { Redirect } from 'react-router';
 import {
   Button, Form, Grid, Header, Message, Segment,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../actions/user';
+import { registerUser } from '../actions/user';
 
-class LoginForm extends React.Component {
-  state = { username: '', password: '' }
+class Register extends React.Component {
+  state = { username: '', password: '', bio: '' }
 
   handleChange = (e, semanticInputData) => {
     this.setState({ [semanticInputData.name]: semanticInputData.value });
   }
 
   handleLoginSubmit = () => {
-    this.props.loginUser(this.state.username, this.state.password);
-    this.setState({ username: '', password: '' });
+    this.props.registerUser(this.state.username, this.state.password, this.state.bio);
+    this.setState({ username: '', password: '', bio: '' });
   }
 
   render() {
@@ -29,11 +28,9 @@ class LoginForm extends React.Component {
     ) : (
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 500 }}>
-
           <Header as='h2' color='orange' textAlign='center'>
-              Sign In
+              Registration
           </Header>
-          <p style={{ letterSpacing: '.95px' }}> Hello There. <br></br>Sign In and start managing your system</p>
           <Form size='large'
             onSubmit={this.handleLoginSubmit}
             size="mini"
@@ -52,6 +49,14 @@ class LoginForm extends React.Component {
                 value={this.state.username}
               />
               <Form.Input
+                icon='book'
+                iconPosition='left'
+                placeholder="Bio"
+                name="bio"
+                onChange={this.handleChange}
+                value={this.state.bio}
+              />
+              <Form.Input
                 icon='lock'
                 iconPosition='left'
                 type="password"
@@ -60,10 +65,12 @@ class LoginForm extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.password}
               />
-              <Button color='orange' fluid size='large' type="submit">Login</Button>
+
+              <Button color='orange' fluid size='large' type="submit">Register</Button>
+
             </Segment>
           </Form>
-          <p className='register'>Already have an account? <Link to='/registration'>  Register</Link></p>
+          <p className='register'>Registred already? <Link to='/login'>  Login</Link></p>
         </Grid.Column>
       </Grid>
     );
@@ -81,4 +88,4 @@ const mapStateToProps = ({
   loggedIn,
 });
 
-export default connect(mapStateToProps, { loginUser })(LoginForm);
+export default connect(mapStateToProps, { registerUser })(Register);

@@ -1,22 +1,17 @@
-import React from 'react'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
+import 'semantic-ui-css/semantic.min.css';
+import React from 'react';
 
-import 'semantic-ui-css/semantic.min.css'
+import { Provider } from 'react-redux';
 
-import App from './App'
-import usersReducer from './reducers/usersReducer' //TODO: move
-import registerServiceWorker from './registerServiceWorker'
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ConfigureStore } from './store/configureStore';
 
-const rootReducer = combineReducers({ usersReducer: usersReducer }) //TODO: move this too
+import App from './App';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk))) //TODO: move this
+import registerServiceWorker from './registerServiceWorker';
 
-console.log(`%c REDUX STORE`, 'color: purple', store.getState())
+const store = ConfigureStore();
 
 ReactDOM.render(
   <Provider store={store}>
@@ -24,6 +19,6 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('root')
-)
-registerServiceWorker()
+  document.getElementById('root'),
+);
+registerServiceWorker();
